@@ -2,9 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AvaloniaClipboard.App"
              xmlns:local="using:AvaloniaClipboard"
-             RequestedThemeVariant="Default">
+             xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             RequestedThemeVariant="Default"
+             x:DataType="viewModels:AppViewModel">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
@@ -12,4 +13,31 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
+    
+     <TrayIcon.Icons>
+         <TrayIcons>
+             <TrayIcon 
+                 Icon="/Assets/avalonia-logo.ico" 
+                 ToolTipText="Avalonia Tray Icon ToolTip"
+                 Command="{Binding Open}"
+                 >
+                 <!--<TrayIcon.Menu>
+                     <NativeMenu>
+                         <NativeMenuItem Header="Settings">
+                             <NativeMenu>
+                                 <NativeMenuItem Header="Option 1" ToggleType="Radio" IsChecked="True" />
+                                 <NativeMenuItem Header="Option 2" ToggleType="Radio" />
+                                 <NativeMenuItemSeparator />
+                                 <NativeMenuItem Header="Option 3" ToggleType="CheckBox" IsChecked="True" />
+                                 <NativeMenuItem Icon="/Assets/avalonia-logo.ico" Header="Restore Defaults"/>
+                                 <NativeMenuItem Header="Disabled option" IsEnabled="False" />
+                                 <NativeMenuItem Header="Hidden option"/>
+                             </NativeMenu>
+                         </NativeMenuItem>
+                         <NativeMenuItem Header="Exit"/>
+                     </NativeMenu>
+                 </TrayIcon.Menu>-->
+             </TrayIcon>
+         </TrayIcons>
+     </TrayIcon.Icons>
 </Application>
