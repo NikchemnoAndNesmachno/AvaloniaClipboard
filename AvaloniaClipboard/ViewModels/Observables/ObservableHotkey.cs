@@ -1,15 +1,16 @@
 using System;
-using System.Collections;
 using System.Collections.ObjectModel;
-using Avalonia.Remote.Protocol.Input;
 using ReactiveUI;
 using SharpHook.Native;
 using SharpHotHook;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class ObservableHotkey: ObservableBase, IHotkey
+public class ObservableHotkey : ObservableBase, IHotkey
 {
+    private int _activatedKeys;
+    private KeyCode[] _keyCodes = [];
+
     public ObservableHotkey()
     {
     }
@@ -21,8 +22,8 @@ public class ObservableHotkey: ObservableBase, IHotkey
         this.Reset();
     }
 
-    private int _activatedKeys = 0;
-    private KeyCode[] _keyCodes = [];
+    public ObservableCollection<bool> IsActivatedObservable { get; set; } = [];
+
     public int ActivatedKeys
     {
         get => _activatedKeys;
@@ -33,12 +34,9 @@ public class ObservableHotkey: ObservableBase, IHotkey
     {
         get => _keyCodes;
         set => this.RaiseAndSetIfChanged(ref _keyCodes, value);
-    } 
-    
+    }
+
     public bool[] IsActivated { get; set; } = [];
 
-    public ObservableCollection<bool> IsActivatedObservable { get; set; } = [];
-    
     public Action OnHotkey { get; set; } = () => { };
-
 }

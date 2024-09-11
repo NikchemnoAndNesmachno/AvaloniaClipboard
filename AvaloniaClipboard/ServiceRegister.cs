@@ -26,13 +26,12 @@ public static class ServiceRegister
     {
         ServiceManager.Services.AddSingleton<MainWindowViewModel>();
     }
+
     public static void RegisterServices()
     {
-       
         ServiceManager.Services.AddSingleton<IWindowManager, WindowManager<MainWindow>>();
         ServiceManager.Services.AddSingleton<IExitApp, ExitApp>();
-        ServiceManager.Services.AddSingleton<IClipboard, ClipboardService>(x=>
+        ServiceManager.Services.AddSingleton<IClipboard, ClipboardService>(x =>
             new ClipboardService(ServiceManager.Get<MainWindow>()));
     }
-    
 }

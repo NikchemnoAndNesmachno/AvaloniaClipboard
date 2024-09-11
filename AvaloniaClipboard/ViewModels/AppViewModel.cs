@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using AvaloniaClipboard.Models;
 using AvaloniaClipboard.Models.Interfaces;
@@ -9,27 +8,25 @@ using SharpHotHook;
 
 namespace AvaloniaClipboard.ViewModels;
 
-public class AppViewModel: ViewModelBase
+public class AppViewModel : ViewModelBase
 {
-    public ClipboardHotkeyManager ClipboardManager { get; set; } = new ClipboardHotkeyManager()
+    public ClipboardHotkeyManager ClipboardManager { get; set; } = new()
     {
         BoardManager = new BoardManager<ObservableBoard>(),
         Clipboard = ServiceManager.Get<IClipboard>(),
-        HotkeyManager = new HotkeyManager()
+        HotkeyManager = new HotkeyManager
         {
             HotkeyContainer = new ObservableHotkeyContainer(),
             PressedKeys = new ObservableCollection<KeyCode>()
         }
     };
-    public AppViewModel()
-    {
-    }
-   
+
     public void Open()
     {
         var windowManager = ServiceManager.Get<IWindowManager>();
         windowManager.OpenWindow();
     }
+
     public void Exit()
     {
         var exitApp = ServiceManager.Get<IExitApp>();
@@ -37,6 +34,7 @@ public class AppViewModel: ViewModelBase
         var vm = ServiceManager.Get<MainWindowViewModel>();
         vm.Dispose();
     }
+
     public void Close()
     {
     }

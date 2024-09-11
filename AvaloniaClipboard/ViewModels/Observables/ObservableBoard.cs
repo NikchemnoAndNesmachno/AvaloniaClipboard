@@ -1,13 +1,12 @@
-using AvaloniaClipboard.Models;
 using AvaloniaClipboard.Models.Interfaces;
 using ReactiveUI;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class ObservableBoard: ObservableBase, ISimpleBoard
+public class ObservableBoard : ObservableBase, ISimpleBoard
 {
-    private string 
-        _name ="",
+    private string
+        _name = "",
         _data = "";
 
     public string Name

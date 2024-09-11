@@ -1,11 +1,10 @@
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using AvaloniaClipboard.Models.Interfaces;
-using AvaloniaClipboard.Services;
 
 namespace AvaloniaClipboard.Views.ServiceImplements;
 
-public class ClipboardService(Window window): IClipboard
+public class ClipboardService(Window window) : IClipboard
 {
     public async Task<string> GetTextAsync()
     {

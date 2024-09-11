@@ -1,6 +1,5 @@
 using Avalonia.Controls;
-using Avalonia.Input;
-using Avalonia.Interactivity;
+//using Avalonia.Interactivity;
 using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels;
 
@@ -21,8 +20,7 @@ public partial class MainWindow : Window
         e.Cancel = true;
     }
 
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    /*private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        
-    }
+    }*/
 }

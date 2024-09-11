@@ -3,7 +3,7 @@ using AvaloniaClipboard.Models.Interfaces;
 
 namespace AvaloniaClipboard.Models.Defaults;
 
-public class DefaultBoards<TBoard>: IBoards<TBoard> where TBoard : ISimpleBoard 
+public class DefaultBoards<TBoard> : IBoards<TBoard> where TBoard : ISimpleBoard
 {
     public IList<TBoard> Boards { get; set; } = [];
 }

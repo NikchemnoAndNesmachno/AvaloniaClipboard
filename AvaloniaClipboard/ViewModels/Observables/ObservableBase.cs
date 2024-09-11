@@ -2,7 +2,6 @@ using ReactiveUI;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class ObservableBase: ReactiveObject
+public class ObservableBase : ReactiveObject
 {
-    
 }

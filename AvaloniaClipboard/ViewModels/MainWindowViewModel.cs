@@ -11,23 +11,12 @@ namespace AvaloniaClipboard.ViewModels;
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private bool _isStopped = true;
+
     public MainWindowViewModel()
     {
         this.WhenAnyValue(x => x.IsStopped).Subscribe(OnStopChanged);
     }
 
-    private void OnStopChanged(bool value)
-    {
-        if (value)
-        {
-            KeyReader.Stop();
-        }
-        else
-        {
-            KeyReader.Run();
-        }
-    }
-    
     public KeyCode CurrentKey
     {
         get => KeyReader.CurrentKey;
@@ -39,9 +28,10 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         get => _isStopped;
         set => this.RaiseAndSetIfChanged(ref _isStopped, value);
     }
+
     public IList<KeyCode> Keys => KeyReader.PressedKeys;
 
-    private KeyReaderManager KeyReader { get; set; } = new KeyReaderManager()
+    private KeyReaderManager KeyReader { get; } = new()
     {
         KeyReadContainer = new ObservableKeyContainer(),
         PressedKeys = new ObservableCollection<KeyCode>()
@@ -52,5 +42,13 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     {
         KeyReader.Stop();
         KeyReader.Dispose();
+    }
+
+    private void OnStopChanged(bool value)
+    {
+        if (value)
+            KeyReader.Stop();
+        else
+            KeyReader.Run();
     }
 }
