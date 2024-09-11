@@ -14,22 +14,6 @@ namespace AvaloniaClipboard;
 
 public class App : Application
 {
-    private HotHook.HotkeyManager HotkeyManager { get; } = new();
-
-    private void Register()
-    {
-        HotkeyManager.AddHotkey(
-            [HotHookCodes.VcLeftControl, HotHookCodes.Vc1],
-            () =>
-            {
-                Dispatcher.UIThread.Invoke(() =>
-                {
-                    var window = ServiceManager.Get<MainWindow>();
-                    window.Keys.Text = "Щось та написано";
-                    Console.WriteLine("Натичнуто");
-                });
-            });
-    }
 
     public override void Initialize()
     {

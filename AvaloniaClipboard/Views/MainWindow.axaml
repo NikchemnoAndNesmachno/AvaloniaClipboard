@@ -3,6 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:AvaloniaClipboard.ViewModels"
+        xmlns:views="clr-namespace:AvaloniaClipboard.Views"
+        xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaClipboard.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -11,10 +13,60 @@
 <Design.DataContext>
     <vm:MainWindowViewModel/>
 </Design.DataContext>
-    <DockPanel>
-        <TextBlock
-            DockPanel.Dock="Bottom"
-            x:Name="Keys"
-            Text="12222qweqw1" />
-    </DockPanel>
+    <TabControl>
+        <TabItem 
+            Header="Призначення клавіш"
+            FontSize="14">
+            <DockPanel LastChildFill="False">
+                <StackPanel 
+                    Orientation="Horizontal"
+                    DockPanel.Dock="Top">
+                    <ToggleButton
+                        IsChecked="{Binding IsKeyReading, Mode=TwoWay}"
+                        MinWidth="100"
+                        MinHeight="20"
+                        Padding="0"
+                        Content="{Binding CurrentKey, Mode=TwoWay}"/>
+                    <Button 
+                        Content="До глобального буферу"
+                        Command="{Binding NewKeyToClipBoard}"/>
+                    <Button 
+                        Content="До цього буферу" 
+                        Command="{Binding NewKeyToBoard}"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <views:NewHotkeyView
+                        MaxHeight="100"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"
+                        DockPanel.Dock="Top"
+                        BoardName="{Binding DoubleHotkey.BoardName}"
+                        KeysToBoard="{Binding DoubleHotkey.KeysToBoard}"
+                        KeysToClipboard="{Binding DoubleHotkey.KeysToClipBoard}"/>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="Додати" Command="{Binding AddNewHotkey}"/>
+                        <Button Content="Оновити" Command="{Binding UpdateHotkey}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <ListBox
+                    ItemsSource="{Binding Hotkeys}">
+                    <ListBox.DataTemplates>
+                        <DataTemplate x:DataType="observables:ObservableDoubleHotkey">
+                            <views:ExistingHotkeyView
+                                BoardName="{Binding BoardName }"
+                                KeysToBoard="{Binding KeysToBoard}"
+                                KeysToClipboard="{Binding KeysToClipBoard}"
+                                />
+                        </DataTemplate>
+                    </ListBox.DataTemplates>
+                </ListBox>
+            </DockPanel>        
+        </TabItem>
+        <TabItem 
+            Header="Спостереження"
+            FontSize="14">
+        </TabItem>
+    </TabControl>
 </Window>

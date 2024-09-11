@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaClipboard.Views">
+    <Design.PreviewWith>
+        <controls:NewHotkeyView MinWidth="100"/>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|NewHotkeyView">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Дані:"
+                        VerticalAlignment="Center"/>
+                    <controls:WrapList
+                        MinWidth="50"
+                        BorderThickness="1"
+                        Items="{TemplateBinding KeysToBoard}"/>
+                    <controls:WrapList
+                        MinWidth="50"
+                        BorderThickness="1"
+                        Items="{TemplateBinding KeysToClipboard}"/>
+                    <TextBox
+                        Grid.Column="3"
+                        Text="{TemplateBinding BoardName}"/>
+                </StackPanel>
+                
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

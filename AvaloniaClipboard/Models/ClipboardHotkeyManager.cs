@@ -41,4 +41,11 @@ public class ClipboardHotkeyManager
         if (boardIndex == -1) BoardManager.Create(boardName);
         HotkeyManager.AddHotkey(hotkey.KeyCodes, () => { SetTextFromClipBoard(boardName); });
     }
+    
+    public void AddHotkey_SetToClipBoard(IHotkey hotkey, string boardName)
+    {
+        var boardIndex = BoardManager.IndexOf(boardName);
+        if (boardIndex == -1) BoardManager.Create(boardName);
+        HotkeyManager.AddHotkey(hotkey.KeyCodes, () => { SetTextToClipboard(boardName); });
+    }
 }

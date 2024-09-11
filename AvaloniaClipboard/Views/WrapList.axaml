@@ -1,0 +1,45 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaClipboard.Views">
+    <Design.PreviewWith>
+        <controls:WrapList />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|WrapList">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ListBox
+                    Padding="0"
+                    x:CompileBindings="False"
+                    ItemsSource="{TemplateBinding Items}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button
+                                    DockPanel.Dock="Right"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding RemoveItem,
+                                     RelativeSource={RelativeSource FindAncestor, AncestorType=controls:WrapList}}"
+                                    CommandParameter="{Binding .}"
+                                    Width="{Binding $self.Height}"
+                                    Content="X"/>
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding .}"/>
+                            </DockPanel> 
+                        </DataTemplate>
+                       
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

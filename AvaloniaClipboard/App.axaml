@@ -1,17 +1,16 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AvaloniaClipboard.App"
-             xmlns:local="using:AvaloniaClipboard"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              RequestedThemeVariant="Default"
              x:DataType="viewModels:AppViewModel">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-    <Application.DataTemplates>
-        <local:ViewLocator />
-    </Application.DataTemplates>
+
 
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="/Styles/IncludeTemplates.axaml"/>
+        <StyleInclude Source="/Styles/Resources/IncludeResources.axaml"/>
     </Application.Styles>
 
     <TrayIcon.Icons>
