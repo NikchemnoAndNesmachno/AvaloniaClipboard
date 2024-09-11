@@ -1,8 +1,56 @@
-﻿namespace AvaloniaClipboard.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using AvaloniaClipboard.ViewModels.Observables;
+using ReactiveUI;
+using SharpHook.Native;
+using SharpHotHook;
 
-public class MainWindowViewModel : ViewModelBase
+namespace AvaloniaClipboard.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase, IDisposable
 {
-#pragma warning disable CA1822 // Mark members as static
-    public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+    private bool _isStopped = true;
+    public MainWindowViewModel()
+    {
+        this.WhenAnyValue(x => x.IsStopped).Subscribe(OnStopChanged);
+    }
+
+    private void OnStopChanged(bool value)
+    {
+        if (value)
+        {
+            KeyReader.Stop();
+        }
+        else
+        {
+            KeyReader.Run();
+        }
+    }
+    
+    public KeyCode CurrentKey
+    {
+        get => KeyReader.CurrentKey;
+        set => KeyReader.CurrentKey = value;
+    }
+
+    public bool IsStopped
+    {
+        get => _isStopped;
+        set => this.RaiseAndSetIfChanged(ref _isStopped, value);
+    }
+    public IList<KeyCode> Keys => KeyReader.PressedKeys;
+
+    private KeyReaderManager KeyReader { get; set; } = new KeyReaderManager()
+    {
+        KeyReadContainer = new ObservableKeyContainer(),
+        PressedKeys = new ObservableCollection<KeyCode>()
+    };
+
+
+    public void Dispose()
+    {
+        KeyReader.Stop();
+        KeyReader.Dispose();
+    }
 }

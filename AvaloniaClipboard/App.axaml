@@ -21,6 +21,11 @@
                  ToolTipText="Avalonia Tray Icon ToolTip"
                  Command="{Binding Open}"
                  >
+                 <TrayIcon.Menu>
+                     <NativeMenu>
+                         <NativeMenuItem Header="Вихід" Command="{Binding Exit}"/>
+                     </NativeMenu>
+                 </TrayIcon.Menu>
                  <!--<TrayIcon.Menu>
                      <NativeMenu>
                          <NativeMenuItem Header="Settings">
