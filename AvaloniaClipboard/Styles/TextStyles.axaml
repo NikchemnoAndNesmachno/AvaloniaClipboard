@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel>
+                <TextBox Text="Input32332"/>
+                <TextBox Text="Input2"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <Style Selector="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+    </Style>
+    <Style Selector="TextBox">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextboxForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource TextboxBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TextboxForeground}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource TextboxForeground}"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextboxSelectionBackground}"/>
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextboxSelectionForeground}"/>
+        <Style Selector="^:focus">
+            <Setter Property="Foreground" Value="{DynamicResource TextboxFocusedForeground}"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource TextboxFocusedForeground}"/>
+            <Style Selector="^:focus /template/ Border">
+                <Setter Property="Background" Value="{DynamicResource TextboxFocusedBackground}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource TextboxFocusedForeground}"/>
+            </Style>
+        </Style>
+    </Style>
+    <!-- Add Styles Here -->
+</Styles>

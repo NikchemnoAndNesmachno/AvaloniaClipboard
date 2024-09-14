@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+             xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaClipboard.Views.UserControls.AddHotkeyPanel"
+             x:DataType="viewModels:MainWindowViewModel">
+    <Design.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Design.DataContext>
+    <StackPanel Orientation="Horizontal"
+                DockPanel.Dock="Top">
+        <templatedControls:NewDoubleHotkeyView
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            BoardName="{Binding DoubleHotkey.BoardName, Mode=TwoWay}"
+            KeysToBoard="{Binding DoubleHotkey.KeysToBoard, Mode=TwoWay}"
+            KeysToClipboard="{Binding DoubleHotkey.KeysToClipBoard, Mode=TwoWay}"/>
+        <StackPanel Orientation="Vertical">
+            <Button Content="Додати" Command="{Binding AddNewHotkey}"/>
+            <Button Content="Оновити" Command="{Binding UpdateHotkey}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

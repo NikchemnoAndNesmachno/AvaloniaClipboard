@@ -10,16 +10,15 @@ namespace AvaloniaClipboard.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
-    private bool _isKeyReading = true;
+    private bool _isKeyReading = false;
     private KeyCode _key = KeyCode.VcUndefined;
     public ObservableDoubleHotkey DoubleHotkey { get; set; } = new();
-    public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = new();
+    public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = [];
     
     public MainWindowViewModel()
     {
-        this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnStopChanged);
+        this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
         this.WhenAnyValue(x => x.KeyReader.KeyReadContainer.CurrentKey).Subscribe(x => CurrentKey = x);
-        //this.WhenAnyValue(x => KeyReader.CurrentKey).Subscribe(code => CurrentKey = code);
     }
 
     public IList<KeyCode> PressedKeys
@@ -61,18 +60,18 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         {
             if(hotkey.BoardName == DoubleHotkey.BoardName) return;
         }
-        Hotkeys.Add(DoubleHotkey);
+        Hotkeys.Add(DoubleHotkey.Copy());
     }
     public void UpdateHotkey()
     {
         
     }
-    private void OnStopChanged(bool value)
+    private void OnKeyReadingChanged(bool value)
     {
         if (value)
-            KeyReader.Stop();
-        else
             KeyReader.Run();
+        else
+            KeyReader.Stop();
     }
 
     public void NewKeyToBoard()

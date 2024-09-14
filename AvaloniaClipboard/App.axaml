@@ -2,15 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AvaloniaClipboard.App"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
-             RequestedThemeVariant="Default"
+             xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes"
+             RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}"
              x:DataType="viewModels:AppViewModel">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
 
     <Application.Styles>
-        <FluentTheme />
-        <StyleInclude Source="/Styles/IncludeTemplates.axaml"/>
+        <SimpleTheme />
         <StyleInclude Source="/Styles/Resources/IncludeResources.axaml"/>
+        <StyleInclude Source="/Styles/Resources/ColorThemes/IncludeThemes.axaml"/>
+        <StyleInclude Source="/Views/TemplatedControls/IncludeTemplates.axaml"/>
+        <StyleInclude Source="/Styles/IncludeControlStyles.axaml"/>
+
     </Application.Styles>
 
     <TrayIcon.Icons>

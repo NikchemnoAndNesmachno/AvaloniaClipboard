@@ -1,0 +1,12 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes">
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceInclude x:Key="{x:Static colorThemes:CustomThemes.Black}" Source="Dark.axaml"/>
+                <ResourceInclude x:Key="{x:Static colorThemes:CustomThemes.Pink}" Source="Pink.axaml"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+</Styles>

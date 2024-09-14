@@ -20,7 +20,35 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10"/>
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.10" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.7.24405.7"/>
         <PackageReference Include="SharpHotHook" Version="0.2.13" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\TemplatedControls\HorizontalList.axaml.cs">
+        <DependentUpon>HorizontalList.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TemplatedControls\DoubleHotkeyView.axaml.cs">
+        <DependentUpon>DoubleHotkeyView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TemplatedControls\NewDoubleHotkeyView.axaml.cs">
+        <DependentUpon>NewDoubleHotkeyView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TemplatedControls\CustomTabItem.axaml.cs">
+        <DependentUpon>CustomTabItem.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\UserControls\ReadPanelControl.axaml.cs">
+        <DependentUpon>ReadPanelControl.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\TemplatedControls\WrapList.axaml.cs">
+        <DependentUpon>WrapList.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

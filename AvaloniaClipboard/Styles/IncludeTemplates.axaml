@@ -1,7 +1,0 @@
-<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StyleInclude Source="/Views/WrapList.axaml"/>
-    <StyleInclude Source="/Views/ExistingHotkeyView.axaml"/>
-    <StyleInclude Source="/Views/NewHotkeyView.axaml"/>
-    <StyleInclude Source="/Views/CustomTabItem.axaml"/>
-</Styles>

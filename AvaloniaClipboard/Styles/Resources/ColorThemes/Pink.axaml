@@ -1,4 +1,9 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
+    <SolidColorBrush x:Key="TabItemUncheckedBack">Pink</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemCheckedBack">DeepPink</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemUncheckedBorder">BlueViolet</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemCheckedBorder">DarkViolet</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="TabControlBack">LightBlue</SolidColorBrush>
 </ResourceDictionary>

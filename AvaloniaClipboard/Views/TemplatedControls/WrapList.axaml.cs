@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Windows.Input;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
-namespace AvaloniaClipboard.Views;
+namespace AvaloniaClipboard.Views.TemplatedControls;
 
 public class WrapList : TemplatedControl
 {

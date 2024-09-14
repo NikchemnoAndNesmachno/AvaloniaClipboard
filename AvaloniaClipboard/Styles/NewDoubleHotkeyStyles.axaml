@@ -1,0 +1,46 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <templatedControls:NewDoubleHotkeyView
+                BoardName="Board name"
+                >
+                <templatedControls:NewDoubleHotkeyView.KeysToBoard>
+                    <collections:ArrayList>
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                    </collections:ArrayList>
+                </templatedControls:NewDoubleHotkeyView.KeysToBoard>
+                <templatedControls:NewDoubleHotkeyView.KeysToClipboard>
+                    <collections:ArrayList>
+                        <x:String>Item 11</x:String>
+                        <x:String>Item 22</x:String>
+                        <x:String>Item 33</x:String>
+                    </collections:ArrayList>
+                </templatedControls:NewDoubleHotkeyView.KeysToClipboard>
+            </templatedControls:NewDoubleHotkeyView>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="templatedControls|NewDoubleHotkeyView">
+        <Style Selector="^ ListBox">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="MinWidth" Value="50"/>
+            <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        </Style>
+        <Style Selector="^ Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        </Style>
+        <Style Selector="^ templatedControls|WrapList Border">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="Lime"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Style>
+</Styles>

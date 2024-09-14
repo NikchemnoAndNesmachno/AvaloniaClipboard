@@ -1,4 +1,45 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Add Resources Here -->
+    
+    <!--Tabs-->
+    <SolidColorBrush x:Key="TabItemUncheckedBack">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemCheckedBack">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemUncheckedBorder">Lime</SolidColorBrush>
+    <SolidColorBrush x:Key="TabItemCheckedBorder">Orange</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="TabControlBack">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TabControlBorder">Orange</SolidColorBrush>
+    
+    
+    <!--Buttons-->
+    <SolidColorBrush x:Key="ButtonForeground">HotPink</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonBackground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonPressedForeground">Orange</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonPressedBackground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonHoverForeground">DeepPink</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonHoverBackground">Black</SolidColorBrush>
+    
+    <!--Toggles-->
+    <SolidColorBrush x:Key="ToggleCheckedForeground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleCheckedBackground">Lime</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleCheckedBorder">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleUncheckedBorder">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleUncheckedBackground">Red</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleUncheckedForeground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleHoverForeground">HotPink</SolidColorBrush>
+    <SolidColorBrush x:Key="ToggleHoverBackground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TogglePressedForeground">Orange</SolidColorBrush>
+    <SolidColorBrush x:Key="TogglePressedBackground">Black</SolidColorBrush>
+    
+    <!--Textblock-->
+    <SolidColorBrush x:Key="TextForeground">Lime</SolidColorBrush>
+    
+    <!--Textbox-->
+    <SolidColorBrush x:Key="TextboxBackground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TextboxForeground">Pink</SolidColorBrush>
+    <SolidColorBrush x:Key="TextboxFocusedForeground">Orange</SolidColorBrush>
+    <SolidColorBrush x:Key="TextboxFocusedBackground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="TextboxSelectionBackground">Pink</SolidColorBrush>
+    <SolidColorBrush x:Key="TextboxSelectionForeground">Black</SolidColorBrush>
+    
 </ResourceDictionary>

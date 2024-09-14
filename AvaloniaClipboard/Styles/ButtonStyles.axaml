@@ -1,0 +1,61 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes">
+    <Design.PreviewWith>
+        <ThemeVariantScope RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}">
+        <Border Padding="20">
+            <StackPanel>
+            <Button Content="1234"/>
+            <ToggleButton Content="2222"/>
+            </StackPanel>
+        </Border>
+            </ThemeVariantScope>
+    </Design.PreviewWith>
+    
+    <!-- Button -->
+    <Style Selector="Button">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonForeground}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"/>
+            <Style Selector="^ /template/ ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"/>
+                <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonHoverForeground}"/>
+            </Style>
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonPressedForeground}"/>
+            <Style Selector="^ /template/ ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonPressedForeground}"/>
+                <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonPressedForeground}"/>
+            </Style>
+        </Style>
+    </Style>
+    
+    <!-- Toggle -->
+    <Style Selector="ToggleButton">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        <Style Selector="^:checked /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ToggleCheckedForeground}"/>
+            <Setter Property="Background" Value="{DynamicResource ToggleCheckedBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ToggleCheckedForeground}"/>    
+        </Style>
+        <Style Selector="^:unchecked /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ToggleUncheckedForeground}"/>
+            <Setter Property="Background" Value="{DynamicResource ToggleUncheckedBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ToggleUncheckedForeground}"/>
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource TogglePressedForeground}"/>
+            <Setter Property="Background" Value="{DynamicResource TogglePressedBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource TogglePressedForeground}"/>
+        </Style>
+    </Style>
+    
+</Styles>

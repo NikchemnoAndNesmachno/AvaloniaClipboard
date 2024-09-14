@@ -1,0 +1,72 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaClipboard.Views"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime">
+    <Design.PreviewWith>
+        <StackPanel Orientation="Horizontal" Height="50" Width="1000">
+            <TextBlock Text="1241" VerticalAlignment="Center"/>
+            <templatedControls:WrapList VerticalAlignment="Center">
+            <templatedControls:WrapList.Items>
+                <collections:ArrayList>
+                    <x:String>123 as</x:String>
+                    <x:String>235</x:String>
+                    <x:String>235</x:String>
+
+                </collections:ArrayList>
+            </templatedControls:WrapList.Items>
+        </templatedControls:WrapList>
+        </StackPanel>
+    </Design.PreviewWith>
+    <StyleInclude Source="SquareButton.axaml"/>
+    <Style Selector="templatedControls|WrapList">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ListBox
+                    Padding="0"
+                    x:CompileBindings="False"
+                    ItemsSource="{TemplateBinding Items}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                            <DockPanel
+                                VerticalAlignment="Center">
+                                <Button
+                                    DockPanel.Dock="Right"
+                                    Height="{Binding #Text.Bounds.Height}"
+                                    Padding="0"
+                                    Margin="5 0 0 0"
+                                    Command="{Binding $parent[templatedControls:WrapList].RemoveItem}"
+                                    CommandParameter="{Binding .}"
+                                    >
+                                    <Viewbox
+                                        Height="{Binding $parent[Button].Bounds.Height}"
+                                        Width="{Binding $self.Height}"
+                                        UseLayoutRounding="False">
+                                        <TextBlock Text="X"/>
+                                    </Viewbox>
+                                </Button>
+                                <TextBlock 
+                                    Name="Text"
+                                    TextAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding .}"/>
+                                
+                            </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                       
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

@@ -17,4 +17,12 @@ public class ObservableDoubleHotkey: ObservableBase
 
     public ObservableCollection<KeyCode> KeysToBoard { get; set; } = [];
     public ObservableCollection<KeyCode> KeysToClipBoard { get; set; } = [];
+
+    public ObservableDoubleHotkey Copy() =>
+        new()
+        {
+            BoardName = BoardName,
+            KeysToBoard = new ObservableCollection<KeyCode>(KeysToBoard),
+            KeysToClipBoard = new ObservableCollection<KeyCode>(KeysToClipBoard)
+        };
 }

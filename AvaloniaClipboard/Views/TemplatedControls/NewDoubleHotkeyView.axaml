@@ -1,0 +1,38 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaClipboard.Views"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
+    <Design.PreviewWith>
+        <templatedControls:NewDoubleHotkeyView
+            BoardName="Board name"
+            KeysToBoard="123"
+            KeysToClipboard="1241"
+            MinWidth="100"/>
+    </Design.PreviewWith>
+
+    <Style Selector="templatedControls|NewDoubleHotkeyView">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Spacing="5"
+                    >
+                    <TextBox
+                        Name="TextBox"
+                        VerticalAlignment="Center"
+                        Text="{TemplateBinding BoardName, Mode=TwoWay}"/>
+                    <templatedControls:WrapList
+                        Height="{Binding #TextBox.Height}"
+                        VerticalAlignment="Center"
+                        Items="{TemplateBinding KeysToBoard}"/>
+                    <templatedControls:WrapList
+                        Height="{Binding #TextBox.Height}"
+                        VerticalAlignment="Center"
+                        Items="{TemplateBinding KeysToClipboard}"/>
+                </StackPanel>
+                
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>
