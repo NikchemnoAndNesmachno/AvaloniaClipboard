@@ -3,30 +3,36 @@
         xmlns:controls="using:AvaloniaClipboard.Views"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
     <Design.PreviewWith>
-        <templatedControls:DoubleDoubleHotkeyView
+        <templatedControls:DoubleHotkeyView
             Width="100"
             Height="100"
-            BoardName="Board wname"
-
-            />
+            BoardName="Board name"
+            >
+            
+        </templatedControls:DoubleHotkeyView>
     </Design.PreviewWith>
 
-    <Style Selector="templatedControls|DoubleDoubleHotkeyView">
+    <Style Selector="templatedControls|DoubleHotkeyView">
         <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock 
-                        VerticalAlignment="Center"
+                <Grid ColumnDefinitions="2*,4*,4*">
+                    <TextBlock
+                        Grid.Column="0"
+                        x:Name="BoardName"
                         Text="{TemplateBinding BoardName, Mode=TwoWay}"/>
                     <templatedControls:HorizontalList
-                        VerticalAlignment="Top"
+                        Grid.Column="1"
+                        x:Name="FirstHotkeyList"
                         ItemsSource="{TemplateBinding KeysToBoard, Mode=TwoWay}"/>
                     <templatedControls:HorizontalList
-                        VerticalAlignment="Top"
+                        Grid.Column="2"
+                        x:Name="SecondHotkeyList"
                         ItemsSource="{TemplateBinding KeysToClipboard, Mode=TwoWay}"/>
-                </StackPanel>
+                </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
+    
+    
 </Styles>

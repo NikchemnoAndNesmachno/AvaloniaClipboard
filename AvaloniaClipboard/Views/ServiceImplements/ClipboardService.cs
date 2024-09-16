@@ -4,7 +4,7 @@ using AvaloniaClipboard.Models.Interfaces;
 
 namespace AvaloniaClipboard.Views.ServiceImplements;
 
-public class ClipboardService(Window window) : IClipboard
+public class ClipboardService(MainWindow window) : IClipboard
 {
     public async Task<string> GetTextAsync()
     {

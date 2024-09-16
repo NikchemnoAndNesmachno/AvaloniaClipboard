@@ -21,19 +21,34 @@
             <DockPanel>
                <userControls:ReadPanelControl
                    DockPanel.Dock="Top"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="5"
                    />
                 <userControls:AddHotkeyPanel
+                    Margin="5"
                     DockPanel.Dock="Top"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Left"
                     />
-                
-                
+               <StackPanel
+                   DockPanel.Dock="Bottom"
+                   Orientation="Horizontal">
+                   <Button
+                       Content="Зберегти"
+                       Command="{Binding Save}"
+                       />    
+                   <ToggleButton
+                       DockPanel.Dock="Bottom"
+                       IsChecked="{Binding IsStarted, Mode=TwoWay}"
+                       Content="{Binding $self.IsChecked, Converter={x:Static views:Converters.StartToggleConverter}}"/>    
+               </StackPanel>
+               
                 <ListBox
+                    Classes="Hotkeys"
+                    SelectedItem="{Binding CurrentHotkey}"
                     ItemsSource="{Binding Hotkeys}">
                     <ListBox.DataTemplates>
                         <DataTemplate x:DataType="observables:ObservableDoubleHotkey">
-                            <templatedControls:DoubleDoubleHotkeyView
+                            <templatedControls:DoubleHotkeyView
                                 BoardName="{Binding BoardName }"
                                 KeysToBoard="{Binding KeysToBoard}"
                                 KeysToClipboard="{Binding KeysToClipBoard}"
@@ -45,6 +60,12 @@
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Header="Спостереження">
+        </templatedControls:CustomTabItem>
+        <templatedControls:CustomTabItem 
+            Header="Ручне керування">
+        </templatedControls:CustomTabItem>
+        <templatedControls:CustomTabItem 
+            Header="Налаштування">
         </templatedControls:CustomTabItem>
     </TabControl>
 </Window>

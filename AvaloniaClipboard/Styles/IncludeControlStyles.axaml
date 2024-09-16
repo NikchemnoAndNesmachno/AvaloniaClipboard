@@ -1,8 +1,11 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StyleInclude Source="GeneralStyles.axaml"/>
     <StyleInclude Source="ButtonStyles.axaml"/>
     <StyleInclude Source="TabStyles.axaml"/>
     <StyleInclude Source="TextStyles.axaml"/>
     <StyleInclude Source="ListboxStyles.axaml"/>
     <StyleInclude Source="NewDoubleHotkeyStyles.axaml"/>
+    <StyleInclude Source="DoubleHotkeyViewsStyle.axaml"/>
+    
 </Styles>

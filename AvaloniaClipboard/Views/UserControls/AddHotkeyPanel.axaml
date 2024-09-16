@@ -10,7 +10,7 @@
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
-    <StackPanel Orientation="Horizontal"
+    <StackPanel Orientation="Vertical"
                 DockPanel.Dock="Top">
         <templatedControls:NewDoubleHotkeyView
             VerticalAlignment="Top"
@@ -18,9 +18,10 @@
             BoardName="{Binding DoubleHotkey.BoardName, Mode=TwoWay}"
             KeysToBoard="{Binding DoubleHotkey.KeysToBoard, Mode=TwoWay}"
             KeysToClipboard="{Binding DoubleHotkey.KeysToClipBoard, Mode=TwoWay}"/>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
             <Button Content="Додати" Command="{Binding AddNewHotkey}"/>
-            <Button Content="Оновити" Command="{Binding UpdateHotkey}"/>
+            <Button Content="Видалити" Command="{Binding RemoveCurrentHotkey}"/>
+            <Button Content="Очистити" Command="{Binding ClearCurrentHotkey}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

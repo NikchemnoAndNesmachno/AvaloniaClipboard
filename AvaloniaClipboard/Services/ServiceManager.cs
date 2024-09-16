@@ -10,7 +10,6 @@ public static class ServiceManager
 
     public static void Init()
     {
-        Provider = Services.BuildServiceProvider();
     }
 
     public static T Get<T>() where T : notnull

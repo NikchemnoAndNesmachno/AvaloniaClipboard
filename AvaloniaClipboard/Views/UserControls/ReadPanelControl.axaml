@@ -20,7 +20,7 @@
                 TextWrapping="WrapWithOverflow"/>
         </ToggleButton>
         <Button
-            Grid.Column="1"
+            Grid.Column="2"
             Command="{Binding NewKeyToClipBoard}">
             <TextBlock
                 TextAlignment="Center"
@@ -28,7 +28,7 @@
                 TextWrapping="WrapWithOverflow"/>
         </Button>
         <Button
-            Grid.Column="2"
+            Grid.Column="1"
             DockPanel.Dock="Right"
                 Command="{Binding NewKeyToBoard}">
             <TextBlock 

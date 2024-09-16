@@ -42,4 +42,14 @@
     <SolidColorBrush x:Key="TextboxSelectionBackground">Pink</SolidColorBrush>
     <SolidColorBrush x:Key="TextboxSelectionForeground">Black</SolidColorBrush>
     
+    <!-- Listbox -->
+    
+    <!-- General -->
+    <SolidColorBrush x:Key="ControlBackground">Black</SolidColorBrush>
+    
+    <!-- Style Brushes -->
+    <SolidColorBrush x:Key="RemoveBrush">OrangeRed</SolidColorBrush>
+    <SolidColorBrush x:Key="NeutralBrush">DodgerBlue</SolidColorBrush>
+    <SolidColorBrush x:Key="AcceptBrush">Lime</SolidColorBrush>
+    
 </ResourceDictionary>

@@ -1,7 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime">
     <Design.PreviewWith>
         <Border Padding="20">
@@ -26,21 +25,42 @@
         </Border>
     </Design.PreviewWith>
 
-    <Style Selector="templatedControls|NewDoubleHotkeyView">
+    <Style Selector="templatedControls|NewDoubleHotkeyView templatedControls|WrapList">
+        <Style Selector="^.ToClipboard ListBox">
+            <Setter Property="BorderBrush" Value="{DynamicResource NeutralBrush}"/>
+        </Style>
+        <Style Selector="^.ToBoard ListBox">
+            <Setter Property="BorderBrush" Value="{DynamicResource AcceptBrush}"/>
+        </Style>
         <Style Selector="^ ListBox">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="MinWidth" Value="50"/>
             <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
-        </Style>
+            
+            <Style Selector="^ ListBoxItem">
+                <Style Selector="^:selected /template/ ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+                </Style>
+                <Style Selector="^:pointerover /template/ ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+                </Style>
+            </Style>
         <Style Selector="^ Button">
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+            <Setter Property="Background" Value="{DynamicResource NeutralBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="CornerRadius" Value="{StaticResource MediumRadius}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+            
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource RemoveBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="DarkRed"/>
+                <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+            </Style>
         </Style>
-        <Style Selector="^ templatedControls|WrapList Border">
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="BorderBrush" Value="Lime"/>
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="BorderThickness" Value="2"/>
         </Style>
     </Style>
 </Styles>

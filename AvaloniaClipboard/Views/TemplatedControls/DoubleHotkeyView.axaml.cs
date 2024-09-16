@@ -1,5 +1,5 @@
 namespace AvaloniaClipboard.Views.TemplatedControls;
 
-public class DoubleDoubleHotkeyView : NewDoubleHotkeyView
+public class DoubleHotkeyView : NewDoubleHotkeyView
 {
 }

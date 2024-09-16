@@ -22,7 +22,7 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.10" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.7.24405.7"/>
-        <PackageReference Include="SharpHotHook" Version="0.2.13" />
+        <PackageReference Include="SharpHotHook" Version="0.2.113" />
     </ItemGroup>
 
     <ItemGroup>
@@ -50,5 +50,13 @@
         <DependentUpon>WrapList.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Styles\Resources\Converters\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AvaloniaXaml Remove="Styles\Resources\Converters\Converters.axaml" />
     </ItemGroup>
 </Project>

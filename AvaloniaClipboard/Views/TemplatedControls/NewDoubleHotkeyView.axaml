@@ -20,13 +20,16 @@
                     >
                     <TextBox
                         Name="TextBox"
+                        MinWidth="50"
                         VerticalAlignment="Center"
                         Text="{TemplateBinding BoardName, Mode=TwoWay}"/>
                     <templatedControls:WrapList
+                        Classes="ToClipboard"
                         Height="{Binding #TextBox.Height}"
                         VerticalAlignment="Center"
                         Items="{TemplateBinding KeysToBoard}"/>
                     <templatedControls:WrapList
+                        Classes="ToBoard"
                         Height="{Binding #TextBox.Height}"
                         VerticalAlignment="Center"
                         Items="{TemplateBinding KeysToClipboard}"/>

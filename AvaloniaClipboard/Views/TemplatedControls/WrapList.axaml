@@ -35,35 +35,12 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border>
-                            <DockPanel
-                                VerticalAlignment="Center">
-                                <Button
-                                    DockPanel.Dock="Right"
-                                    Height="{Binding #Text.Bounds.Height}"
-                                    Padding="0"
-                                    Margin="5 0 0 0"
-                                    Command="{Binding $parent[templatedControls:WrapList].RemoveItem}"
-                                    CommandParameter="{Binding .}"
-                                    >
-                                    <Viewbox
-                                        Height="{Binding $parent[Button].Bounds.Height}"
-                                        Width="{Binding $self.Height}"
-                                        UseLayoutRounding="False">
-                                        <TextBlock Text="X"/>
-                                    </Viewbox>
-                                </Button>
-                                <TextBlock 
-                                    Name="Text"
-                                    TextAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    TextWrapping="Wrap"
-                                    Text="{Binding .}"/>
-                                
-                            </DockPanel>
-                            </Border>
+                            <Button
+                                Command="{Binding $parent[templatedControls:WrapList].RemoveItem}"
+                                CommandParameter="{Binding .}"
+                                Content="{Binding .}"
+                                />
                         </DataTemplate>
-                       
                     </ListBox.ItemTemplate>
                 </ListBox>
             </ControlTemplate>

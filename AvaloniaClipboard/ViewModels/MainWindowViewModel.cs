@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using AvaloniaClipboard.Models;
+using AvaloniaClipboard.Models.Interfaces;
+using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels.Observables;
 using ReactiveUI;
 using SharpHook.Native;
 using SharpHotHook;
+using SharpHotHook.Defaults;
 
 namespace AvaloniaClipboard.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
-    private bool _isKeyReading = false;
+    public IClipboardHotkeyManager ClipboardHotkeyManager { get; set; }
+    private bool _isKeyReading, _isStarted=false;
     private KeyCode _key = KeyCode.VcUndefined;
     public ObservableDoubleHotkey DoubleHotkey { get; set; } = new();
+    public ObservableDoubleHotkey CurrentHotkey { get; set; } = new();
     public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = [];
     
-    public MainWindowViewModel()
+    public MainWindowViewModel(IClipboard clipboard)
     {
+        ClipboardHotkeyManager = new ObservableClipboardHotkeyManager(clipboard);
         this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
+        this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
         this.WhenAnyValue(x => x.KeyReader.KeyReadContainer.CurrentKey).Subscribe(x => CurrentKey = x);
     }
+    
 
     public IList<KeyCode> PressedKeys
     {
@@ -37,6 +47,12 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     {
         get => _isKeyReading;
         set => this.RaiseAndSetIfChanged(ref _isKeyReading, value);
+    }
+    
+    public bool IsStarted
+    {
+        get => _isStarted;
+        set => this.RaiseAndSetIfChanged(ref _isStarted, value);
     }
 
     public IList<KeyCode> Keys => KeyReader.PressedKeys;
@@ -62,9 +78,16 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         }
         Hotkeys.Add(DoubleHotkey.Copy());
     }
-    public void UpdateHotkey()
+    public void ClearCurrentHotkey()
     {
-        
+        DoubleHotkey.BoardName = "";
+        DoubleHotkey.KeysToBoard.Clear();
+        DoubleHotkey.KeysToClipBoard.Clear();
+    }
+
+    public void RemoveCurrentHotkey()
+    {
+        Hotkeys.Remove(CurrentHotkey);
     }
     private void OnKeyReadingChanged(bool value)
     {
@@ -72,6 +95,28 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
             KeyReader.Run();
         else
             KeyReader.Stop();
+    }
+
+    public void Save()
+    {
+        ClipboardHotkeyManager.Clear();
+        foreach (var hotkey in Hotkeys)
+        {
+            ClipboardHotkeyManager.AddHotkey_SetToBoard(hotkey.KeysToBoard.ToArray(), hotkey.BoardName);
+            ClipboardHotkeyManager.AddHotkey_SetToClipBoard(hotkey.KeysToClipBoard.ToArray(), hotkey.BoardName);
+        }
+    }
+    private void OnStarted(bool value)
+    {
+        if (value)
+        {
+            ClipboardHotkeyManager.HotkeyManager.Run();
+            IsKeyReading = false;
+        }
+        else
+        {
+            ClipboardHotkeyManager.HotkeyManager.Stop();
+        }
     }
 
     public void NewKeyToBoard()
