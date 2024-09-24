@@ -24,6 +24,7 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             ServiceRegister.RegisterAll();
             DataContext = new AppViewModel();
             desktop.MainWindow = new MainWindow();
@@ -34,17 +35,18 @@ public class App : Application
 
     private void TrayIcon_OnClicked(object? sender, EventArgs e)
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            desktop.MainWindow?.Show();
-        }
+        if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop) return;
+        var window = desktop.MainWindow;
+        if (window is null) return;
+        window.Show();
+        window.WindowState = WindowState.Normal;
     }
 
     private void OnExit(object? sender, EventArgs e)
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow?.Close();
+            desktop.Shutdown();
         }
     }
 }

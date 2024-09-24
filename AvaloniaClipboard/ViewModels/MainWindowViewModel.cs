@@ -4,12 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AvaloniaClipboard.Models;
 using AvaloniaClipboard.Models.Interfaces;
-using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels.Observables;
 using ReactiveUI;
 using SharpHook.Native;
 using SharpHotHook;
-using SharpHotHook.Defaults;
 
 namespace AvaloniaClipboard.ViewModels;
 
@@ -17,7 +15,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 {
     public IClipboardHotkeyManager ClipboardHotkeyManager { get; set; }
     private bool _isKeyReading, _isStarted=false;
-    private KeyCode _key = KeyCode.VcUndefined;
+    private KeyCode _keyCode = KeyCode.VcUndefined;
     public ObservableDoubleHotkey DoubleHotkey { get; set; } = new();
     public ObservableDoubleHotkey CurrentHotkey { get; set; } = new();
     public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = [];
@@ -27,7 +25,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         ClipboardHotkeyManager = new ObservableClipboardHotkeyManager(clipboard);
         this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
         this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
-        this.WhenAnyValue(x => x.KeyReader.KeyReadContainer.CurrentKey).Subscribe(x => CurrentKey = x);
+        this.WhenAnyValue(x => x.KeyReader.CurrentKey).Subscribe(x=>CurrentKey =x);
     }
     
 
@@ -36,13 +34,13 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         get => KeyReader.PressedKeys;
         set => KeyReader.PressedKeys = value;
     }
-
+    
     public KeyCode CurrentKey
     {
-        get => _key;
-        set => this.RaiseAndSetIfChanged(ref _key, value);
+        get => _keyCode;
+        set => this.RaiseAndSetIfChanged(ref _keyCode, value);
     }
-
+    
     public bool IsKeyReading
     {
         get => _isKeyReading;
@@ -57,9 +55,8 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
 
     public IList<KeyCode> Keys => KeyReader.PressedKeys;
 
-    private KeyReaderManager KeyReader { get; } = new()
+    private ObservableKeyReader KeyReader { get; } = new()
     {
-        KeyReadContainer = new ObservableKeyContainer(),
         PressedKeys = new ObservableCollection<KeyCode>()
     };
 
@@ -92,7 +89,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     private void OnKeyReadingChanged(bool value)
     {
         if (value)
-            KeyReader.Run();
+            KeyReader.Start();
         else
             KeyReader.Stop();
     }
@@ -110,7 +107,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     {
         if (value)
         {
-            ClipboardHotkeyManager.HotkeyManager.Run();
+            ClipboardHotkeyManager.HotkeyManager.Start();
             IsKeyReading = false;
         }
         else

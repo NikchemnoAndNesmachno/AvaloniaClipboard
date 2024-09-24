@@ -1,14 +1,18 @@
+using System.Collections;
 using System.Collections.Generic;
+using Avalonia.Input;
 using AvaloniaClipboard.Models.Defaults;
 using AvaloniaClipboard.Models.Interfaces;
 using SharpHook.Native;
 using SharpHotHook;
+using SharpHotHook.Interfaces;
 
 namespace AvaloniaClipboard.Models;
 
-public class ClipboardHotkeyManager(IClipboard clipboard): IClipboardHotkeyManager
+public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyManager 
+    where T: IHotkey, new()
 {
-    public Dictionary<string, KeyCode[][]> BoardHotkeys { get; set; } = [];
+    public Dictionary<string, IList<KeyCode>[]> BoardHotkeys { get; set; } = [];
     public IClipboard? Clipboard { get; set; } = clipboard;
     public HotkeyManager HotkeyManager { get; set; } = new();
 
@@ -31,18 +35,18 @@ public class ClipboardHotkeyManager(IClipboard clipboard): IClipboardHotkeyManag
         board.Data = await Clipboard.GetTextAsync();
     }
 
-    public void RemoveHotkey(KeyCode[] keys, string boardName)
+    public void RemoveHotkey(IList<KeyCode> keys, string boardName)
     {
-        HotkeyManager.HotkeyContainer.Remove(keys);
+        HotkeyManager.Remove(keys);
         var boardIndex = BoardManager.IndexOf(boardName);
         BoardManager.Remove(BoardManager.Get(boardIndex));
     }
-    public void SetHotkey(string boardName, KeyCode[] keys, int index)
+    public void SetHotkey(string boardName, IList<KeyCode> keys, int index)
     {
         var exists = BoardHotkeys.TryGetValue(boardName, out var hotkeys);
         if (!exists || hotkeys is null)
         {
-            var newHotkeys = new KeyCode[2][];
+            var newHotkeys = new IList<KeyCode>[2];
             newHotkeys[index] = keys;
             BoardHotkeys.Add(boardName, newHotkeys);
         }
@@ -51,20 +55,34 @@ public class ClipboardHotkeyManager(IClipboard clipboard): IClipboardHotkeyManag
             hotkeys[index] = keys;
         }
     }
-    public void AddHotkey_SetToBoard(KeyCode[] keys, string boardName)
+
+    public void AddHotkey_SetToBoard(IList<KeyCode> keys, string boardName)
     {
         var boardIndex = BoardManager.IndexOf(boardName);
         if (boardIndex == -1) BoardManager.Create(boardName);
-        HotkeyManager.AddHotkey(keys, () => { SetTextFromClipBoard(boardName); });
+        HotkeyManager.Add( new T 
+        {
+            KeyCodes = keys,
+            OnHotkey = () =>
+            {
+                SetTextFromClipBoard(boardName); 
+            }
+        });
         SetHotkey(boardName, keys, 1);
     }
 
-   
-    public void AddHotkey_SetToClipBoard(KeyCode[] keys, string boardName)
+    public void AddHotkey_SetToClipBoard(IList<KeyCode> keys, string boardName)
     {
         var boardIndex = BoardManager.IndexOf(boardName);
         if (boardIndex == -1) BoardManager.Create(boardName);
-        HotkeyManager.AddHotkey(keys, () => { SetTextToClipboard(boardName); });
+        HotkeyManager.Add(new T 
+        {
+            KeyCodes = keys,
+            OnHotkey = () =>
+            {
+                SetTextToClipboard(boardName); 
+            }
+        });
         SetHotkey(boardName, keys, 0);
     }
 
@@ -80,7 +98,7 @@ public class ClipboardHotkeyManager(IClipboard clipboard): IClipboardHotkeyManag
 
             foreach (var hotkey in pair.Value)
             {
-                HotkeyManager.HotkeyContainer.Remove(hotkey);
+                HotkeyManager.Remove(hotkey);
             }
         }
         BoardHotkeys.Clear();

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Avalonia.Input;
 using AvaloniaClipboard.Models.Defaults;
 using AvaloniaClipboard.Models.Interfaces;
 using SharpHook.Native;
@@ -15,13 +16,13 @@ public interface IClipboardHotkeyManager
 
     void SetTextFromClipBoard(string boardName);
 
-    void RemoveHotkey(KeyCode[] keys, string boardName); 
-    void SetHotkey(string boardName, KeyCode[] keys, int index);
+    void RemoveHotkey(IList<KeyCode> keys, string boardName); 
+    void SetHotkey(string boardName, IList<KeyCode> keys, int index);
 
-    void AddHotkey_SetToBoard(KeyCode[] keys, string boardName);
+    void AddHotkey_SetToBoard(IList<KeyCode> keys, string boardName);
 
 
-    void AddHotkey_SetToClipBoard(KeyCode[] keys, string boardName);
+    void AddHotkey_SetToClipBoard(IList<KeyCode> keys, string boardName);
 
     void Clear();
 }
