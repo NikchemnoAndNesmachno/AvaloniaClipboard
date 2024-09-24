@@ -1,53 +1,55 @@
+using System.Collections;
+using System.Collections.Generic;
 using AvaloniaClipboard.Models.Defaults;
 using AvaloniaClipboard.Models.Interfaces;
 
 namespace AvaloniaClipboard.Models;
 
 public class BoardManager<TBoard> : IBoardManager
-    where TBoard : ISimpleBoard, new()
+    where TBoard : IBoard, new()
 {
-    public IBoards<ISimpleBoard> Boards { get; set; } = new DefaultBoards<ISimpleBoard>();
+    public IList<IBoard> Boards { get; set; } = [];
 
     public int IndexOf(string name)
     {
-        for (var i = 0; i < Boards.Boards.Count; i++)
+        for (var i = 0; i < Boards.Count; i++)
         {
-            var item = Boards.Boards[i];
+            var item = Boards[i];
             if (item.Name == name) return i;
         }
 
         return -1;
     }
 
-    public void Add(ISimpleBoard board)
+    public void Add(IBoard board)
     {
-        Boards.Boards.Add(board);
+        Boards.Add(board);
     }
 
-    public void Remove(ISimpleBoard board)
+    public void Remove(IBoard board)
     {
-        Boards.Boards.Add(board);
+        Boards.Add(board);
     }
 
-    public ISimpleBoard Create(string name)
+    public IBoard Create(string name)
     {
         var board = new TBoard
         {
             Name = name,
             Data = ""
         };
-        Boards.Boards.Add(board);
+        Boards.Add(board);
         return board;
     }
 
-    public ISimpleBoard Get(int index)
+    public IBoard Get(int index)
     {
-        return Boards.Boards[index];
+        return Boards[index];
     }
 
     public void SetData(string name, string data)
     {
-        foreach (var board in Boards.Boards)
+        foreach (var board in Boards)
         {
             if (board.Name != name) continue;
             board.Data = data;
@@ -57,7 +59,7 @@ public class BoardManager<TBoard> : IBoardManager
 
     public string GetData(string name)
     {
-        foreach (var board in Boards.Boards)
+        foreach (var board in Boards)
         {
             if (board.Name != name) continue;
             return board.Data;

@@ -65,6 +65,8 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     {
         KeyReader.Stop();
         KeyReader.Dispose();
+        ClipboardHotkeyManager.HotkeyManager.Stop();
+        ClipboardHotkeyManager.HotkeyManager.Dispose();
     }
 
     public void AddNewHotkey()

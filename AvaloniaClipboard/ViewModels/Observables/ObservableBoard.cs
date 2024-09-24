@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class ObservableBoard : ObservableBase, ISimpleBoard
+public class ObservableBoard : ObservableBase, IBoard
 {
     private string
         _name = "",
