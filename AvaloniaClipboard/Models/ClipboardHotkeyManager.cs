@@ -21,18 +21,13 @@ public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyMa
     public async void SetTextToClipboard(string boardName)
     {
         if (Clipboard is null) return;
-        var index = BoardManager.IndexOf(boardName);
-        if (index == -1) return;
-        await Clipboard.SetTextAsync(BoardManager.Get(index).Data);
+        await Clipboard.SetTextAsync(BoardManager.GetData(boardName));
     }
 
     public async void SetTextFromClipBoard(string boardName)
     {
         if (Clipboard is null) return;
-        var index = BoardManager.IndexOf(boardName);
-        if (index == -1) return;
-        var board = BoardManager.Get(index);
-        board.Data = await Clipboard.GetTextAsync();
+        BoardManager.SetData(boardName, await Clipboard.GetTextAsync());
     }
 
     public void RemoveHotkey(IList<KeyCode> keys, string boardName)
@@ -63,10 +58,7 @@ public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyMa
         HotkeyManager.Add( new T 
         {
             KeyCodes = keys,
-            OnHotkey = () =>
-            {
-                SetTextFromClipBoard(boardName); 
-            }
+            OnHotkey = () => SetTextFromClipBoard(boardName)
         });
         SetHotkey(boardName, keys, 1);
     }
@@ -78,10 +70,7 @@ public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyMa
         HotkeyManager.Add(new T 
         {
             KeyCodes = keys,
-            OnHotkey = () =>
-            {
-                SetTextToClipboard(boardName); 
-            }
+            OnHotkey = () => SetTextToClipboard(boardName)
         });
         SetHotkey(boardName, keys, 0);
     }

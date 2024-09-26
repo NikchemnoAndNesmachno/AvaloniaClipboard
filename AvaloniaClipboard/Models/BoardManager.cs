@@ -21,15 +21,9 @@ public class BoardManager<TBoard> : IBoardManager
         return -1;
     }
 
-    public void Add(IBoard board)
-    {
-        Boards.Add(board);
-    }
+    public void Add(IBoard board) => Boards.Add(board);
 
-    public void Remove(IBoard board)
-    {
-        Boards.Add(board);
-    }
+    public void Remove(IBoard board) => Boards.Remove(board);
 
     public IBoard Create(string name)
     {
@@ -42,10 +36,7 @@ public class BoardManager<TBoard> : IBoardManager
         return board;
     }
 
-    public IBoard Get(int index)
-    {
-        return Boards[index];
-    }
+    public IBoard Get(int index) => Boards[index];
 
     public void SetData(string name, string data)
     {

@@ -61,6 +61,9 @@
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Header="Спостереження">
+            <mainTabs:WatchTab 
+                DataContext="{Binding WatchViewModel}"
+                />
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Header="Ручне керування">

@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using AvaloniaClipboard.Models;
 using AvaloniaClipboard.Models.Interfaces;
 using AvaloniaClipboard.Services;
@@ -10,13 +11,11 @@ namespace AvaloniaClipboard.ViewModels.Observables;
 
 public class ObservableClipboardHotkeyManager: ClipboardHotkeyManager<ObservableHotkey>
 {
-    public ObservableClipboardHotkeyManager(IClipboard clipboard) : base(clipboard)
+    public ObservableClipboardHotkeyManager(IClipboard clipboard,
+        IBoardManager boardManager,
+        HotkeyManager hotkeyManager) : base(clipboard)
     {
-        BoardManager = new BoardManager<ObservableBoard>();
-        HotkeyManager = new HotkeyManager
-        {
-            Hotkeys = new ObservableCollection<IHotkey>(),
-            PressedKeys = new ObservableCollection<KeyCode>()
-        };
+        HotkeyManager = hotkeyManager;
+        BoardManager = boardManager;
     }
 }

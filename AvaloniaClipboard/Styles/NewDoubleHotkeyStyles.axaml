@@ -5,8 +5,7 @@
     <Design.PreviewWith>
         <Border Padding="20">
             <templatedControls:NewDoubleHotkeyView
-                BoardName="Board name"
-                >
+                BoardName="Board name">
                 <templatedControls:NewDoubleHotkeyView.KeysToBoard>
                     <collections:ArrayList>
                         <x:String>Item 1</x:String>

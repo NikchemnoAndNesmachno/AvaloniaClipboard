@@ -3,6 +3,7 @@
              x:Class="AvaloniaClipboard.App"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes"
+             xmlns:views="clr-namespace:AvaloniaClipboard.Views"
              RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}"
              x:DataType="viewModels:AppViewModel">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -16,7 +17,7 @@
         <StyleInclude Source="/Styles/IncludeControlStyles.axaml"/>
 
     </Application.Styles>
-
+    
     <TrayIcon.Icons>
         <TrayIcons>
             <TrayIcon

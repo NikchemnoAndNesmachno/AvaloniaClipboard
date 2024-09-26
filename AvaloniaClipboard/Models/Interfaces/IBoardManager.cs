@@ -11,4 +11,8 @@ public interface IBoardManager
 
     IBoard Create(string name);
     IBoard Get(int index);
+
+    void SetData(string name, string data);
+
+    string GetData(string name);
 }

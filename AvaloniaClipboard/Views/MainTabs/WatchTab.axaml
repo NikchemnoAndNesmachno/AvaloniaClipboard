@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             xmlns:native="clr-namespace:SharpHook.Native;assembly=SharpHook"
+             xmlns:views="clr-namespace:AvaloniaClipboard.Views"
+             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
+             xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
+             xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaClipboard.Views.MainTabs.WatchTab"
+             x:DataType="viewModels:WatchViewModel">
+    <Design.DataContext>
+        <viewModels:WatchViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <ListBox 
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding HotkeyManager.PressedKeys}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="native:KeyCode">
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Button DockPanel.Dock="Top" Command="{Binding Refresh}">Click</Button>
+        <ListBox
+            ItemsSource="{Binding Zips}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DataTemplate.DataType>
+                        <x:Type TypeName="objectModel:ObservableCollection"
+                                x:TypeArguments="observables:ObservableZipItem"/>
+                    </DataTemplate.DataType>
+                    <ListBox ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="observables:ObservableZipItem">
+                                <templatedControls:ZipKeyItem
+                                    IsActivated="{Binding IsActivated, Mode=TwoWay}"
+                                    KeyCode="{Binding Key, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

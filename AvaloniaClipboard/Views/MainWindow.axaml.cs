@@ -11,7 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel(new ClipboardService(this));
+        DataContext = new MainWindowViewModel(new ClipboardService(this), ServiceManager.Get<WatchViewModel>());
         Closing += Window_OnClosing;
     }
 
@@ -21,8 +21,4 @@ public partial class MainWindow : Window
         e.Cancel = true;
     }
     
-
-    /*private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-    }*/
 }

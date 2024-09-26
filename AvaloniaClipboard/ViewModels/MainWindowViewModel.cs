@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AvaloniaClipboard.Models;
 using AvaloniaClipboard.Models.Interfaces;
+using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels.Observables;
 using ReactiveUI;
 using SharpHook.Native;
@@ -13,6 +14,7 @@ namespace AvaloniaClipboard.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
+    public WatchViewModel WatchViewModel { get; set; }
     public IClipboardHotkeyManager ClipboardHotkeyManager { get; set; }
     private bool _isKeyReading, _isStarted=false;
     private KeyCode _keyCode = KeyCode.VcUndefined;
@@ -20,9 +22,12 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
     public ObservableDoubleHotkey CurrentHotkey { get; set; } = new();
     public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = [];
     
-    public MainWindowViewModel(IClipboard clipboard)
+    public MainWindowViewModel(IClipboard clipboard, WatchViewModel viewModel)
     {
-        ClipboardHotkeyManager = new ObservableClipboardHotkeyManager(clipboard);
+        WatchViewModel = viewModel;
+        ClipboardHotkeyManager = new ObservableClipboardHotkeyManager(clipboard, 
+            ServiceManager.Get<IBoardManager>(),
+            WatchViewModel.HotkeyManager);
         this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
         this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
         this.WhenAnyValue(x => x.KeyReader.CurrentKey).Subscribe(x=>CurrentKey =x);

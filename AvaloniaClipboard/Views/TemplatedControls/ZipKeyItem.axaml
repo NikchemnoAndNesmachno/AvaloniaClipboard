@@ -1,0 +1,51 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:AvaloniaClipboard.Views.TemplatedControls"
+        xmlns:native="clr-namespace:SharpHook.Native;assembly=SharpHook"
+        xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
+        xmlns:views="clr-namespace:AvaloniaClipboard.Views">
+    <Design.PreviewWith>
+        <StackPanel>
+            <controls:ZipKeyItem
+                IsActivated="{x:False}"
+                KeyCode="3324"/>
+            
+            <ItemsControl Width="200" Height="500">
+            <ItemsControl.Items>
+                <observables:ObservableZipItem
+                    Key="Vc2"
+                    IsActivated="False"/>
+                <observables:ObservableZipItem
+                    Key="VcUndefined"
+                    IsActivated="False"/>
+            </ItemsControl.Items>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="observables:ObservableZipItem">
+                    <controls:ZipKeyItem
+                        IsActivated="{Binding IsActivated}"
+                        KeyCode="{Binding Key}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <Style Selector="controls|ZipKeyItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border 
+                    Padding="10"
+                    Margin="2"
+                    Background="{TemplateBinding IsActivated, 
+                    Converter={x:Static views:Converters.ActivatedToColor}}"
+                    BorderBrush="Black"
+                    BorderThickness="{StaticResource ThicknessThin}">
+                    <TextBlock
+                        Foreground="Black"
+                        Text="{TemplateBinding KeyCode}" />    
+                </Border>
+                
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

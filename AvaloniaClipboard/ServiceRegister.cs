@@ -9,6 +9,7 @@ using AvaloniaClipboard.Views.ServiceImplements;
 using Microsoft.Extensions.DependencyInjection;
 using SharpHook.Native;
 using SharpHotHook;
+using SharpHotHook.Interfaces;
 
 namespace AvaloniaClipboard;
 
@@ -23,6 +24,12 @@ public static class ServiceRegister
     public static void RegisterServices()
     {
         ServiceManager.Services.AddSingleton<IClipboard, ClipboardService>();
-        ServiceManager.Services.AddSingleton<IClipboardHotkeyManager, ObservableClipboardHotkeyManager>();
+        ServiceManager.Services.AddSingleton<IBoardManager, BoardManager<ObservableBoard>>();
+        ServiceManager.Services.AddSingleton<WatchViewModel>();
+        ServiceManager.Services.AddSingleton<HotkeyManager>(new HotkeyManager()
+        {
+            Hotkeys = new ObservableCollection<IHotkey>(),
+            PressedKeys = new ObservableCollection<KeyCode>()
+        });
     }
 }
