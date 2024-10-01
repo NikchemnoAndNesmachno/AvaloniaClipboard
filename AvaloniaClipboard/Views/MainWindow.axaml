@@ -3,11 +3,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:AvaloniaClipboard.ViewModels"
-        xmlns:views="clr-namespace:AvaloniaClipboard.Views"
-        xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-        xmlns:userControls="clr-namespace:AvaloniaClipboard.Views.UserControls"
         xmlns:mainTabs="clr-namespace:AvaloniaClipboard.Views.MainTabs"
+        xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaClipboard.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -18,59 +16,27 @@
 </Design.DataContext>
     <TabControl>
         <templatedControls:CustomTabItem
-            Header="Призначення клавіш">
-            <DockPanel>
-               <userControls:ReadPanelControl
-                   DockPanel.Dock="Top"
-                   HorizontalAlignment="Left"
-                   Margin="5"
-                   />
-                <userControls:AddHotkeyPanel
-                    Margin="5"
-                    DockPanel.Dock="Top"
-                    HorizontalAlignment="Left"
-                    />
-               <StackPanel
-                   DockPanel.Dock="Bottom"
-                   Orientation="Horizontal">
-                   <Button
-                       Content="Зберегти"
-                       Command="{Binding Save}"
-                       />    
-                   <ToggleButton
-                       DockPanel.Dock="Bottom"
-                       IsChecked="{Binding IsStarted, Mode=TwoWay}"
-                       Content="{Binding $self.IsChecked, Converter={x:Static views:Converters.StartToggleConverter}}"/>    
-               </StackPanel>
-               
-                <ListBox
-                    Classes="Hotkeys"
-                    SelectedItem="{Binding CurrentHotkey}"
-                    ItemsSource="{Binding Hotkeys}">
-                    <ListBox.DataTemplates>
-                        <DataTemplate x:DataType="observables:ObservableDoubleHotkey">
-                            <templatedControls:DoubleHotkeyView
-                                BoardName="{Binding BoardName }"
-                                KeysToBoard="{Binding KeysToBoard}"
-                                KeysToClipboard="{Binding KeysToClipBoard}"
-                                />
-                        </DataTemplate>
-                    </ListBox.DataTemplates>
-                </ListBox>
-            </DockPanel>        
+            Classes="Ico"
+            Header="{StaticResource IcoHotkey}"
+            ToolTip.Tip="{x:Static languages:Langs.HotkeyTab}">
+            <mainTabs:HotkeyTab DataContext="{Binding HotkeyViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
-            Header="Спостереження">
-            <mainTabs:WatchTab 
-                DataContext="{Binding WatchViewModel}"
-                />
+            Classes="Ico"
+            Header="{StaticResource IcoWatch}"
+            ToolTip.Tip="{x:Static languages:Langs.WatchTab}">
+            <mainTabs:WatchTab DataContext="{Binding WatchViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
-            Header="Ручне керування">
-            <mainTabs:HandManageTab/>
+            Classes="Ico"
+            Header="{StaticResource IcoClipboard}"
+            ToolTip.Tip="{x:Static languages:Langs.BoardTab}">
+            <mainTabs:HandManageTab  DataContext="{Binding HotkeyViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
-            Header="Налаштування">
+            Classes="Ico"
+            Header="{StaticResource IcoSettings}"
+            ToolTip.Tip="{x:Static languages:Langs.SettingsTab}">
         </templatedControls:CustomTabItem>
     </TabControl>
 </Window>

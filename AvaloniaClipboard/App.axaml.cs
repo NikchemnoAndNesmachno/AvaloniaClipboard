@@ -46,6 +46,8 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            var manager = ServiceManager.Get<HotHook.HotkeyManager>();
+            manager.Stop();
             desktop.Shutdown();
         }
     }

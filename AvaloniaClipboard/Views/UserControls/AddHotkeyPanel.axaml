@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.UserControls.AddHotkeyPanel"
-             x:DataType="viewModels:MainWindowViewModel">
+             x:DataType="viewModels:HotkeyViewModel">
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:HotkeyViewModel/>
     </Design.DataContext>
     <StackPanel Orientation="Vertical"
                 DockPanel.Dock="Top">
@@ -19,9 +20,21 @@
             KeysToBoard="{Binding DoubleHotkey.KeysToBoard, Mode=TwoWay}"
             KeysToClipboard="{Binding DoubleHotkey.KeysToClipBoard, Mode=TwoWay}"/>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Додати" Command="{Binding AddNewHotkey}"/>
-            <Button Content="Видалити" Command="{Binding RemoveCurrentHotkey}"/>
-            <Button Content="Очистити" Command="{Binding ClearCurrentHotkey}"/>
+            <Button
+                Classes="Ico Accept"
+                Content="{StaticResource IcoAdd}"
+                Command="{Binding AddNewHotkey}"
+                ToolTip.Tip="{x:Static languages:Langs.AddBoardAndHotkey}"/>
+            <Button
+                Classes="Ico Remove"
+                Content="{StaticResource IcoSubtract}"
+                Command="{Binding RemoveCurrentHotkey}"
+                ToolTip.Tip="{x:Static languages:Langs.RemoveBoardAndHotkey}"/>
+            <Button
+                Classes="Ico Neutral"
+                Content="{StaticResource IcoRefresh}"
+                Command="{Binding ClearCurrentHotkey}"
+                ToolTip.Tip="{x:Static languages:Langs.ClearForm}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

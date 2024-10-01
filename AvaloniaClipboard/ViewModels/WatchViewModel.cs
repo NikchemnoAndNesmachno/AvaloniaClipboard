@@ -20,7 +20,7 @@ public class WatchViewModel(HotkeyManager hotkeyManager): ViewModelBase
     private IList<IHotkey> Hotkeys => HotkeyManager.Hotkeys;
     public void Refresh()
     {
-        Clear();
+        Zips.Clear();
         foreach (var hotkey in Hotkeys)
         {
             var n = new ObservableCollection<ObservableZipItem>();
@@ -33,20 +33,5 @@ public class WatchViewModel(HotkeyManager hotkeyManager): ViewModelBase
             }
             Zips.Add(n);
         }
-    }
-
-    public void Clear()
-    {
-        for (int index = 0; index < Zips.Count; index++)
-        {
-            var hotkey = Hotkeys[index];
-            if(hotkey.IsActivated is not ObservableCollection<bool> bools) continue;
-            var zipItems = Zips[index];
-            foreach (var zip in zipItems)
-            {
-                zip.Unregister(bools);
-            }
-        }
-        Zips.Clear();
     }
 }

@@ -1,6 +1,4 @@
 using Avalonia.Controls;
-//using Avalonia.Interactivity;
-using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels;
 using AvaloniaClipboard.Views.ServiceImplements;
 
@@ -11,7 +9,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel(new ClipboardService(this), ServiceManager.Get<WatchViewModel>());
+        var clipboard = new ClipboardService(this);
+        DataContext = new MainWindowViewModel(clipboard);
         Closing += Window_OnClosing;
     }
 

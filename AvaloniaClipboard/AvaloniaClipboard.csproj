@@ -21,6 +21,7 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10"/>
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.10" />
+        <PackageReference Include="Ljson" Version="1.1.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.7.24405.7"/>
         <PackageReference Include="SharpHotHook" Version="0.3.2" />
     </ItemGroup>
@@ -50,13 +51,25 @@
         <DependentUpon>WrapList.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Styles\Resources\Converters\" />
+      <Compile Update="Styles\Resources\Languages\Langs.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Langs.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <AvaloniaXaml Remove="Styles\Resources\Converters\Converters.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Styles\Fonts\IcoResource.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Styles\Resources\Languages\Langs.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Langs.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>

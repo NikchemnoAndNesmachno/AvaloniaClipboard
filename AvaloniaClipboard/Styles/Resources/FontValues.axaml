@@ -4,4 +4,6 @@
     <system:Double x:Key="FontSizeCommon">14</system:Double>
     <system:Double x:Key="FontSizeSmall">12</system:Double>
     <system:Double x:Key="FontSizeBig">16</system:Double>
+    <system:Double x:Key="FontSizeHuge">24</system:Double>
+    <system:Double x:Key="FontSizeHeader">28</system:Double>
 </ResourceDictionary>

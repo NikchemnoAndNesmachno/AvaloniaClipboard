@@ -5,6 +5,7 @@
                 <ResourceDictionary.MergedDictionaries>
                         <ResourceInclude Source="BorderValues.axaml"/>
                         <ResourceInclude Source="FontValues.axaml"/>
+                        <ResourceInclude Source="FontResources.axaml"/>
                 </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
         </Styles.Resources>

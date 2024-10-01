@@ -7,5 +7,5 @@
     <StyleInclude Source="ListboxStyles.axaml"/>
     <StyleInclude Source="NewDoubleHotkeyStyles.axaml"/>
     <StyleInclude Source="DoubleHotkeyViewsStyle.axaml"/>
-    
+    <StyleInclude Source="IcoStyles.axaml"/>
 </Styles>

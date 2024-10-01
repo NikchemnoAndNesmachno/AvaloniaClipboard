@@ -3,40 +3,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="250"
              x:Class="AvaloniaClipboard.Views.UserControls.ReadPanelControl"
-             x:DataType="viewModels:MainWindowViewModel">
+             x:DataType="viewModels:HotkeyViewModel">
     <Design.DataContext>
-        <viewModels:MainWindowViewModel/>
+        <viewModels:HotkeyViewModel/>
     </Design.DataContext>
 
-    <Grid
-        ColumnDefinitions="Auto, *, *">
+    <DockPanel LastChildFill="False">
+        <StackPanel
+            DockPanel.Dock="Right"
+            Orientation="Horizontal">
+            <Button
+                Classes="Ico Neutral"
+                Content="{StaticResource IcoToGlobalClipboard}"
+                Command="{Binding NewKeyToClipBoard}"
+                ToolTip.Tip="{x:Static languages:Langs.KeysToGlobalClipboard}"/>
+            <Button
+                Classes="Ico Neutral"
+                DockPanel.Dock="Right"
+                Content="{StaticResource IcoToLocalClipboard}"
+                Command="{Binding NewKeyToBoard}"
+                ToolTip.Tip="{x:Static languages:Langs.KeysToLocalClipboard}"/>
+        </StackPanel>
         <ToggleButton
-            Grid.Column="0"
+            DockPanel.Dock="Left"
             IsChecked="{Binding IsKeyReading, Mode=TwoWay}">
             <TextBlock
                 Text="{Binding CurrentKey, Mode=TwoWay}" 
                 TextWrapping="WrapWithOverflow"/>
         </ToggleButton>
-        <Button
-            Grid.Column="2"
-            Command="{Binding NewKeyToClipBoard}">
-            <TextBlock
-                TextAlignment="Center"
-                Text="До глобального буферу" 
-                TextWrapping="WrapWithOverflow"/>
-        </Button>
-        <Button
-            Grid.Column="1"
-            DockPanel.Dock="Right"
-                Command="{Binding NewKeyToBoard}">
-            <TextBlock 
-                TextAlignment="Center"
-                Text="До цього буферу" 
-                TextWrapping="WrapWithOverflow"/>
-        </Button>
-        
-    </Grid>
-
+        </DockPanel>
 </UserControl>

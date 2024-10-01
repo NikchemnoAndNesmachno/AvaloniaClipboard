@@ -1,0 +1,59 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ToGlobalClipboard" xml:space="preserve">
+        <value>Copy to global clipboard from this one</value>
+    </data>
+    <data name="ToLocalClipboard" xml:space="preserve">
+        <value>Copy from global clipboard to program one (to here)</value>
+    </data>
+    <data name="KeysToLocalClipboard" xml:space="preserve">
+        <value>Add hotkeys for command 'Copy to local clipboard'</value>
+    </data>
+    <data name="KeysToGlobalClipboard" xml:space="preserve">
+        <value>Add hotkeys for command 'Copy to global clipboard'</value>
+    </data>
+    <data name="SaveBoards" xml:space="preserve">
+        <value>Save boards and hotkeys for commands to the file, apply them</value>
+    </data>
+    <data name="AddBoardAndHotkey" xml:space="preserve">
+        <value>Add current board and hotkeys to the list</value>
+    </data>
+    <data name="RemoveBoardAndHotkey" xml:space="preserve">
+        <value>Remove current board from the list</value>
+    </data>
+    <data name="RefreshWatchList" xml:space="preserve">
+        <value>Refresh list of hotkeys to watch</value>
+    </data>
+    <data name="RunStop" xml:space="preserve">
+        <value>Run / Stop</value>
+    </data>
+    <data name="ClearForm" xml:space="preserve">
+        <value>Clear new board and hotkey form</value>
+    </data>
+    <data name="HotkeyTab" xml:space="preserve">
+        <value>Assign hotkeys and boards</value>
+    </data>
+    <data name="SettingsTab" xml:space="preserve">
+        <value>Edit settings</value>
+    </data>
+    <data name="WatchTab" xml:space="preserve">
+        <value>Watch at pressed keys</value>
+    </data>
+    <data name="BoardTab" xml:space="preserve">
+        <value>Edit values from boards by yourself</value>
+    </data>
+    <data name="ReadBoards" xml:space="preserve">
+        <value>Read boards and hotkeys from the file</value>
+    </data>
+</root>

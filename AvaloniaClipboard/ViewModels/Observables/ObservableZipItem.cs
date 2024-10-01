@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -9,10 +10,11 @@ using SharpHotHook.Interfaces;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class ObservableZipItem: ObservableBase
+public class ObservableZipItem: ObservableBase, IDisposable
 {
     private KeyCode _key;
     private bool _isActivated;
+    private Action _unRegister;
     public KeyCode Key
     {
         get => _key;
@@ -30,6 +32,7 @@ public class ObservableZipItem: ObservableBase
     {
         Index = index;
         bools.CollectionChanged += OnChanged;
+        _unRegister = () => { Unregister(bools); };
         Key = keys[index];
     }
 
@@ -42,5 +45,10 @@ public class ObservableZipItem: ObservableBase
     {
         if (sender is not ObservableCollection<bool> hotkeys) return;
         IsActivated = hotkeys[Index];
+    }
+
+    public void Dispose()
+    {
+        _unRegister();
     }
 }

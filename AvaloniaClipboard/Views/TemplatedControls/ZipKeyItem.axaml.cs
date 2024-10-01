@@ -22,6 +22,4 @@ public class ZipKeyItem : TemplatedControl
         get => GetValue(KeyCodeProperty);
         set => SetValue(KeyCodeProperty, value);
     }
-    
-
 }

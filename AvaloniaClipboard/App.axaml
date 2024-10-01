@@ -17,7 +17,6 @@
         <StyleInclude Source="/Styles/IncludeControlStyles.axaml"/>
 
     </Application.Styles>
-    
     <TrayIcon.Icons>
         <TrayIcons>
             <TrayIcon

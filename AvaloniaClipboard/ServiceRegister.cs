@@ -25,8 +25,7 @@ public static class ServiceRegister
     {
         ServiceManager.Services.AddSingleton<IClipboard, ClipboardService>();
         ServiceManager.Services.AddSingleton<IBoardManager, BoardManager<ObservableBoard>>();
-        ServiceManager.Services.AddSingleton<WatchViewModel>();
-        ServiceManager.Services.AddSingleton<HotkeyManager>(new HotkeyManager()
+        ServiceManager.Services.AddSingleton(new HotkeyManager
         {
             Hotkeys = new ObservableCollection<IHotkey>(),
             PressedKeys = new ObservableCollection<KeyCode>()

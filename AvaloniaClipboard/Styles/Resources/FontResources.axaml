@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <FontFamily x:Key="IcoFont">avares://AvaloniaClipboard/Assets/Fonts/#Ico</FontFamily>
+    
+    <system:String x:Key="IcoHotkeyBoard">&#xe900;</system:String>
+    <system:String x:Key="IcoClipboard">&#xe901;</system:String>
+    <system:String x:Key="IcoDelete">&#xe902;</system:String>
+    <system:String x:Key="IcoUpload">&#xe903;</system:String>
+    <system:String x:Key="IcoUploadFile">&#xe904;</system:String>
+    <system:String x:Key="IcoHotkey">&#xe905;</system:String>
+    <system:String x:Key="IcoDislike">&#xe906;</system:String>
+    <system:String x:Key="IcoDownload">&#xe907;</system:String>
+    <system:String x:Key="IcoChange">&#xe908;</system:String>
+    <system:String x:Key="IcoSaveFile">&#xe909;</system:String>
+    <system:String x:Key="IcoLike">&#xe90a;</system:String>
+    <system:String x:Key="IcoSettings">&#xe90b;</system:String>
+    <system:String x:Key="IcoRefresh">&#xe90c;</system:String>
+    <system:String x:Key="IcoAdd">&#xe90d;</system:String>
+    <system:String x:Key="IcoEmptyFile">&#xe90e;</system:String>
+    <system:String x:Key="IcoSearch">&#xe90f;</system:String>
+    <system:String x:Key="IcoSearchFile">&#xe910;</system:String>
+    <system:String x:Key="IcoWatch">&#xe911;</system:String>
+    <system:String x:Key="IcoToGlobalClipboard">&#xe912;</system:String>
+    <system:String x:Key="IcoToLocalClipboard">&#xe913;</system:String>
+    <system:String x:Key="IcoFile">&#xe914;</system:String>
+    <system:String x:Key="IcoSubtract">&#xe915;</system:String>
+    <system:String x:Key="IcoPlay">&#xe916;</system:String>
+    <system:String x:Key="IcoPause">&#xe917;</system:String>
+</ResourceDictionary>

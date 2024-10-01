@@ -12,31 +12,6 @@
             </ThemeVariantScope>
     </Design.PreviewWith>
     
-    <!-- Button -->
-    <Style Selector="Button">
-        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
-        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}"/>
-        <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ButtonForeground}"/>
-        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
-        <Style Selector="^:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"/>
-            <Style Selector="^ /template/ ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource ButtonHoverForeground}"/>
-                <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource ButtonHoverForeground}"/>
-            </Style>
-        </Style>
-        <Style Selector="^:pressed">
-            <Setter Property="Foreground" Value="{DynamicResource ButtonPressedForeground}"/>
-            <Style Selector="^ /template/ ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource ButtonPressedForeground}"/>
-                <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource ButtonPressedForeground}"/>
-            </Style>
-        </Style>
-    </Style>
-    
     <!-- Toggle -->
     <Style Selector="ToggleButton">
         <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>

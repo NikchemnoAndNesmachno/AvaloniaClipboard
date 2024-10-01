@@ -55,11 +55,15 @@ public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyMa
     {
         var boardIndex = BoardManager.IndexOf(boardName);
         if (boardIndex == -1) BoardManager.Create(boardName);
-        HotkeyManager.Add( new T 
+        if (keys.Count != 0)
         {
-            KeyCodes = keys,
-            OnHotkey = () => SetTextFromClipBoard(boardName)
-        });
+            HotkeyManager.Add(new T
+            {
+                KeyCodes = keys,
+                OnHotkey = () => SetTextFromClipBoard(boardName)
+            });
+        }
+
         SetHotkey(boardName, keys, 1);
     }
 
@@ -67,11 +71,15 @@ public class ClipboardHotkeyManager<T>(IClipboard clipboard): IClipboardHotkeyMa
     {
         var boardIndex = BoardManager.IndexOf(boardName);
         if (boardIndex == -1) BoardManager.Create(boardName);
-        HotkeyManager.Add(new T 
+        if (keys.Count != 0)
         {
-            KeyCodes = keys,
-            OnHotkey = () => SetTextToClipboard(boardName)
-        });
+            HotkeyManager.Add(new T 
+            {
+                KeyCodes = keys,
+                OnHotkey = () => SetTextToClipboard(boardName)
+            });    
+        }
+        
         SetHotkey(boardName, keys, 0);
     }
 

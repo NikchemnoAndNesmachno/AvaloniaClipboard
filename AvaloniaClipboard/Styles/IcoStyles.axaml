@@ -1,0 +1,91 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+        xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages">
+    <Design.PreviewWith>
+        <TabControl>
+            <templatedControls:CustomTabItem
+                Classes="Ico"
+                Header="{StaticResource IcoHotkey}"
+                ToolTip.Tip="{x:Static languages:Langs.HotkeyTab}"
+                >
+            <UniformGrid>
+            <Button Classes="Ico Remove" Content="{StaticResource IcoDelete}"/>
+            <Button Classes="Ico Remove" Content="{StaticResource IcoSubtract}"/>
+            <Button Classes="Ico Accept" Content="{StaticResource IcoAdd}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoClipboard}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoToGlobalClipboard}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoToLocalClipboard}"/>
+            <Button Classes="Ico Accept" Content="{StaticResource IcoUpload}"/>
+            <Button Classes="Ico Accept" Content="{StaticResource IcoDownload}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoRefresh}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoFile}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoSearch}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoEmptyFile}"/>
+            <Button Classes="Ico Neutral" Content="{StaticResource IcoSearchFile}"/>
+            <ToggleButton Classes="Ico Play"/>
+            <ToggleButton Classes="Ico Pause"/>
+        </UniformGrid>
+                </templatedControls:CustomTabItem>
+        </TabControl>
+    </Design.PreviewWith>
+    
+    <Style Selector="Button.Ico">
+        <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
+        <Setter Property="Background" Value="{DynamicResource IcoBack}"/>
+        <Setter Property="Foreground" Value="{Binding $self.BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        <Style Selector="^:pointerover /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource IcoBack}"/>
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource IcoBack}"/>
+        </Style>
+        <Style Selector="^.Accept">
+            <Setter Property="Foreground" Value="{DynamicResource IcoAccept}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoAccept}"/>
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoAcceptPress}"/>
+            </Style>
+        </Style>
+        
+        <Style Selector="^.Neutral">
+            <Setter Property="Foreground" Value="{DynamicResource IcoNeutral}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoNeutral}"/>
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoNeutralPress}"/>
+            </Style>
+        </Style>        
+        <Style Selector="^.Remove">
+            <Setter Property="Foreground" Value="{DynamicResource IcoRemove}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoRemove}"/>
+            </Style>
+            <Style Selector="^:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IcoRemovePress}"/>
+            </Style>
+        </Style>
+        
+    </Style>
+    
+    <Style Selector="ToggleButton.Ico">
+        <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
+        <Style Selector="^.Play">
+            <Setter Property="Content" Value="{StaticResource IcoPlay}"/>    
+        </Style>
+        <Style Selector="^.Pause">
+            <Setter Property="Content" Value="{StaticResource IcoPause}"/>    
+        </Style>
+    </Style>
+    
+    <Style Selector="templatedControls|CustomTabItem.Ico > Border > TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
+    </Style>
+</Styles>
