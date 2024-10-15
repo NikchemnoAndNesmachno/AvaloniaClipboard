@@ -35,7 +35,7 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="2"/>
             <Style Selector="^ TextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource OwnIcoNeutralHovered}"/>
+                <Setter Property="Foreground" Value="{DynamicResource OwnLightForeground}"/>
             </Style>
         </Style>
         <Style Selector="^ templatedControls|HorizontalList#FirstHotkeyList ItemsControl">

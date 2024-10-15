@@ -37,7 +37,7 @@
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Classes="Ico"
-            Header="{StaticResource IcoSettings}"
+            Header="{DynamicResource IcoSettings}"
             ToolTip.Tip="{DynamicResource SettingsTab}">
             <mainTabs:SettingsTab DataContext="{Binding SettingsViewModel}"/>
         </templatedControls:CustomTabItem>
