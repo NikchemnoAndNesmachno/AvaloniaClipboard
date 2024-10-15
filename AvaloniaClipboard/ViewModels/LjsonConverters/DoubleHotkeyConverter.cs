@@ -9,10 +9,10 @@ using SharpHook.Native;
 
 namespace AvaloniaClipboard.ViewModels.LjsonConverters;
 
-public class ObservableHotkeyConverter: LjsonDefaultConvert<ObservableDoubleHotkey>
+public class DoubleHotkeyConverter: LjsonDefaultConvert<ObservableDoubleHotkey>
 {
     private KeyCodeListConverter KeysConverter { get; set; } = new();
-    public ObservableHotkeyConverter()
+    public DoubleHotkeyConverter()
     {
         ConvertStrategy = new SimpleStrategy()
         {

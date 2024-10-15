@@ -1,38 +1,26 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:AvaloniaClipboard.Views"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
-    <Design.PreviewWith>
-        <templatedControls:DoubleHotkeyView
-            Width="100"
-            Height="100"
-            BoardName="Board name"
-            >
-            
-        </templatedControls:DoubleHotkeyView>
-    </Design.PreviewWith>
-
+    <StyleInclude Source="/Styles/DoubleHotkeyViewsStyle.axaml"/>
     <Style Selector="templatedControls|DoubleHotkeyView">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid ColumnDefinitions="2*,4*,4*">
                     <TextBlock
+                        VerticalAlignment="Center"
                         Grid.Column="0"
                         x:Name="BoardName"
                         Text="{TemplateBinding BoardName, Mode=TwoWay}"/>
                     <templatedControls:HorizontalList
                         Grid.Column="1"
                         x:Name="FirstHotkeyList"
-                        ItemsSource="{TemplateBinding KeysToBoard, Mode=TwoWay}"/>
+                        ItemSource="{TemplateBinding KeysToBoard, Mode=TwoWay}"/>
                     <templatedControls:HorizontalList
                         Grid.Column="2"
                         x:Name="SecondHotkeyList"
-                        ItemsSource="{TemplateBinding KeysToClipboard, Mode=TwoWay}"/>
+                        ItemSource="{TemplateBinding KeysToClipboard, Mode=TwoWay}"/>
                 </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
-    
-    
 </Styles>

@@ -26,39 +26,45 @@
 
     <Style Selector="templatedControls|NewDoubleHotkeyView templatedControls|WrapList">
         <Style Selector="^.ToClipboard ListBox">
-            <Setter Property="BorderBrush" Value="{DynamicResource NeutralBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoPositive}"/>
+            <Style Selector="^ Button">
+                <Setter Property="Background" Value="{DynamicResource OwnIcoPositive}"/>
+            </Style>
         </Style>
         <Style Selector="^.ToBoard ListBox">
-            <Setter Property="BorderBrush" Value="{DynamicResource AcceptBrush}"/>
-        </Style>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoNeutral}"/>
+            <Style Selector="^ Button">
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNeutral}"/>
+            </Style>
+            </Style>
         <Style Selector="^ ListBox">
-            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Background" Value="{DynamicResource OwnListBackground}"/>
             <Setter Property="MinWidth" Value="50"/>
             <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
-            
             <Style Selector="^ ListBoxItem">
                 <Style Selector="^:selected /template/ ContentPresenter">
-                    <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+                    <Setter Property="Background" Value="{DynamicResource OwnListItemBackground}"/>
                 </Style>
                 <Style Selector="^:pointerover /template/ ContentPresenter">
-                    <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+                    <Setter Property="Background" Value="{DynamicResource OwnListItemBackground}"/>
                 </Style>
             </Style>
         <Style Selector="^ Button">
-            <Setter Property="Background" Value="{DynamicResource NeutralBrush}"/>
             <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnIcoNegative}"/>
+
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Margin" Value="2 0 2 0"/>
             <Setter Property="CornerRadius" Value="{StaticResource MediumRadius}"/>
-            <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
             
             <Style Selector="^:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource RemoveBrush}"/>
-                <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNegative}"/>
+                <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter">
-                <Setter Property="Background" Value="DarkRed"/>
-                <Setter Property="Foreground" Value="{DynamicResource ControlBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNegativeChecked}"/>
+                <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
             </Style>
         </Style>
         </Style>

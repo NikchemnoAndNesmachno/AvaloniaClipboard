@@ -9,33 +9,31 @@
             KeysToClipboard="1241"
             MinWidth="100"/>
     </Design.PreviewWith>
-
+    <StyleInclude Source="/Styles/NewDoubleHotkeyStyles.axaml"/>
     <Style Selector="templatedControls|NewDoubleHotkeyView">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
-                <StackPanel 
-                    Orientation="Horizontal"
-                    Spacing="5"
-                    >
+                <DockPanel LastChildFill="False">
                     <TextBox
+                        DockPanel.Dock="Left"
                         Name="TextBox"
                         MinWidth="50"
                         VerticalAlignment="Center"
                         Text="{TemplateBinding BoardName, Mode=TwoWay}"/>
                     <templatedControls:WrapList
-                        Classes="ToClipboard"
-                        Height="{Binding #TextBox.Height}"
-                        VerticalAlignment="Center"
-                        Items="{TemplateBinding KeysToBoard}"/>
-                    <templatedControls:WrapList
+                        DockPanel.Dock="Right"
                         Classes="ToBoard"
-                        Height="{Binding #TextBox.Height}"
+                        Height="{Binding #TextBox.Bounds.Height}"
                         VerticalAlignment="Center"
                         Items="{TemplateBinding KeysToClipboard}"/>
-                </StackPanel>
-                
-            </ControlTemplate>
+                    <templatedControls:WrapList
+                        DockPanel.Dock="Right"
+                        Classes="ToClipboard"
+                        Height="{Binding #TextBox.Bounds.Height}"
+                        VerticalAlignment="Center"
+                        Items="{TemplateBinding KeysToBoard}"/>
+                </DockPanel>
+                </ControlTemplate>
         </Setter>
     </Style>
 </Styles>

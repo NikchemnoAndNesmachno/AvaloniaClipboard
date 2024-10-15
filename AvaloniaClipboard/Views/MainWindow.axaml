@@ -5,7 +5,6 @@
         xmlns:vm="using:AvaloniaClipboard.ViewModels"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
         xmlns:mainTabs="clr-namespace:AvaloniaClipboard.Views.MainTabs"
-        xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaClipboard.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -14,29 +13,33 @@
 <Design.DataContext>
     <vm:MainWindowViewModel/>
 </Design.DataContext>
+    <Window.Styles>
+        <StyleInclude Source="/Styles/TabStyles.axaml"/>
+    </Window.Styles>
     <TabControl>
         <templatedControls:CustomTabItem
             Classes="Ico"
             Header="{StaticResource IcoHotkey}"
-            ToolTip.Tip="{x:Static languages:Langs.HotkeyTab}">
+            ToolTip.Tip="{DynamicResource HotkeyTab}">
             <mainTabs:HotkeyTab DataContext="{Binding HotkeyViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Classes="Ico"
             Header="{StaticResource IcoWatch}"
-            ToolTip.Tip="{x:Static languages:Langs.WatchTab}">
+            ToolTip.Tip="{DynamicResource WatchTab}">
             <mainTabs:WatchTab DataContext="{Binding WatchViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Classes="Ico"
             Header="{StaticResource IcoClipboard}"
-            ToolTip.Tip="{x:Static languages:Langs.BoardTab}">
+            ToolTip.Tip="{DynamicResource BoardTab}">
             <mainTabs:HandManageTab  DataContext="{Binding HotkeyViewModel}"/>
         </templatedControls:CustomTabItem>
         <templatedControls:CustomTabItem 
             Classes="Ico"
             Header="{StaticResource IcoSettings}"
-            ToolTip.Tip="{x:Static languages:Langs.SettingsTab}">
+            ToolTip.Tip="{DynamicResource SettingsTab}">
+            <mainTabs:SettingsTab DataContext="{Binding SettingsViewModel}"/>
         </templatedControls:CustomTabItem>
     </TabControl>
 </Window>

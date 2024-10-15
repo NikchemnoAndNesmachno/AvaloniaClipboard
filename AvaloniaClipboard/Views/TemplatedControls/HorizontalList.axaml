@@ -1,23 +1,13 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:AvaloniaClipboard.Views"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
-    <Design.PreviewWith>
-        <templatedControls:HorizontalList
-            ItemsSource="32344233"
-            Width="100"
-            Height="50"
-            />
-    </Design.PreviewWith>
-
     <Style Selector="templatedControls|HorizontalList">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
                 <ScrollViewer
                     VerticalScrollBarVisibility="Disabled"
                     HorizontalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{TemplateBinding ItemsSource, Mode=TwoWay}">
+                <ItemsControl ItemsSource="{TemplateBinding ItemSource, Mode=TwoWay}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="10"/>

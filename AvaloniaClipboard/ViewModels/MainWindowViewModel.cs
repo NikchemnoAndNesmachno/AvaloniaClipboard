@@ -12,16 +12,10 @@ using SharpHotHook;
 
 namespace AvaloniaClipboard.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel(HotkeyViewModel hotkeyViewModel, WatchViewModel watchViewModel, SettingsViewModel settingsViewModel)
+    : ViewModelBase
 {
-    public WatchViewModel WatchViewModel { get; set; }
-    public HotkeyViewModel HotkeyViewModel { get; set; }
-    
-    public MainWindowViewModel(IClipboard clipboard)
-    {
-        var hotkeyManager = ServiceManager.Get<HotkeyManager>();
-        HotkeyViewModel = new HotkeyViewModel(clipboard, hotkeyManager);
-        WatchViewModel = new WatchViewModel(hotkeyManager);
-    }
-    
+    public WatchViewModel WatchViewModel { get; set; } = watchViewModel;
+    public HotkeyViewModel HotkeyViewModel { get; set; } = hotkeyViewModel;
+    public SettingsViewModel SettingsViewModel { get; set; } = settingsViewModel;
 }

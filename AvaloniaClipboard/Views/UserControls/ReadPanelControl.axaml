@@ -3,30 +3,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
-             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="250"
              x:Class="AvaloniaClipboard.Views.UserControls.ReadPanelControl"
              x:DataType="viewModels:HotkeyViewModel">
     <Design.DataContext>
         <viewModels:HotkeyViewModel/>
     </Design.DataContext>
-
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/IcoStyles.axaml"/>
+    </UserControl.Styles>
     <DockPanel LastChildFill="False">
-        <StackPanel
+        <WrapPanel
             DockPanel.Dock="Right"
             Orientation="Horizontal">
+            <Button
+                Classes="Ico Accept"
+                DockPanel.Dock="Right"
+                Content="{StaticResource IcoToLocalClipboard}"
+                Command="{Binding NewKeyToBoard}"
+                ToolTip.Tip="{DynamicResource KeysToLocalClipboard}"/>
             <Button
                 Classes="Ico Neutral"
                 Content="{StaticResource IcoToGlobalClipboard}"
                 Command="{Binding NewKeyToClipBoard}"
-                ToolTip.Tip="{x:Static languages:Langs.KeysToGlobalClipboard}"/>
-            <Button
-                Classes="Ico Neutral"
-                DockPanel.Dock="Right"
-                Content="{StaticResource IcoToLocalClipboard}"
-                Command="{Binding NewKeyToBoard}"
-                ToolTip.Tip="{x:Static languages:Langs.KeysToLocalClipboard}"/>
-        </StackPanel>
+                ToolTip.Tip="{DynamicResource KeysToGlobalClipboard}"/>
+        </WrapPanel>
         <ToggleButton
             DockPanel.Dock="Left"
             IsChecked="{Binding IsKeyReading, Mode=TwoWay}">

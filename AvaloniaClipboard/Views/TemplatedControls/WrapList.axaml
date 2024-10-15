@@ -19,14 +19,15 @@
         </templatedControls:WrapList>
         </StackPanel>
     </Design.PreviewWith>
-    <StyleInclude Source="SquareButton.axaml"/>
     <Style Selector="templatedControls|WrapList">
         <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
                 <ListBox
-                    Padding="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
                     x:CompileBindings="False"
+                    Padding="0"
                     ItemsSource="{TemplateBinding Items}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -38,8 +39,7 @@
                             <Button
                                 Command="{Binding $parent[templatedControls:WrapList].RemoveItem}"
                                 CommandParameter="{Binding .}"
-                                Content="{Binding .}"
-                                />
+                                Content="{Binding .}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

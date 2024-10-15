@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel>
+                <templatedControls:ZipKeyItem KeyCode="qweryr"/>
+                <templatedControls:ZipKeyItem KeyCode="23" IsActivated="True"/>    
+            </StackPanel>
+            
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="templatedControls|ZipKeyItem /template/ Border">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessBold}"/>
+        <Style Selector="^ TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+        </Style>
+    </Style>
+</Styles>

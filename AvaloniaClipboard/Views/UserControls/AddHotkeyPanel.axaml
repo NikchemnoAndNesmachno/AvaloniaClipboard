@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
-             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.UserControls.AddHotkeyPanel"
              x:DataType="viewModels:HotkeyViewModel">
@@ -24,17 +23,17 @@
                 Classes="Ico Accept"
                 Content="{StaticResource IcoAdd}"
                 Command="{Binding AddNewHotkey}"
-                ToolTip.Tip="{x:Static languages:Langs.AddBoardAndHotkey}"/>
+                ToolTip.Tip="{DynamicResource AddBoardAndHotkey}"/>
             <Button
                 Classes="Ico Remove"
                 Content="{StaticResource IcoSubtract}"
                 Command="{Binding RemoveCurrentHotkey}"
-                ToolTip.Tip="{x:Static languages:Langs.RemoveBoardAndHotkey}"/>
+                ToolTip.Tip="{DynamicResource RemoveBoardAndHotkey}"/>
             <Button
                 Classes="Ico Neutral"
                 Content="{StaticResource IcoRefresh}"
                 Command="{Binding ClearCurrentHotkey}"
-                ToolTip.Tip="{x:Static languages:Langs.ClearForm}"/>
+                ToolTip.Tip="{DynamicResource ClearForm}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

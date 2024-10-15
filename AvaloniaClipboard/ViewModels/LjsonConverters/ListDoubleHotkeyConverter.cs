@@ -8,10 +8,10 @@ using Ljson.ConvertStringsStrategy;
 using Ljson.DefaultBases;
 namespace AvaloniaClipboard.ViewModels.LjsonConverters;
 
-public class HotkeyViewModelConverter: LjsonListConvert<ObservableDoubleHotkey>
+public class ListDoubleHotkeyConverter: LjsonListConvert<ObservableDoubleHotkey>
 {
-    private ObservableHotkeyConverter HotkeyConverter { get; set; } = new();
-    public HotkeyViewModelConverter()
+    private DoubleHotkeyConverter HotkeyConverter { get; set; } = new();
+    public ListDoubleHotkeyConverter()
     {
         ConvertStrategy = new SimpleStrategy()
         {

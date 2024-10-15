@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              xmlns:interfaces="clr-namespace:AvaloniaClipboard.Models.Interfaces"
-             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.MainTabs.HandManageTab"
              x:Name="MainControl"
@@ -12,12 +11,20 @@
     <Design.DataContext>
         <viewModels:HotkeyViewModel/>
     </Design.DataContext>
-    <ListBox 
+    <UserControl.Styles>
+        <Style Selector="Grid > TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource OwnListItemForeground}"/>
+        </Style>
+    </UserControl.Styles>
+    <ScrollViewer>
+    <ItemsControl 
         ItemsSource="{Binding ClipboardHotkeyManager.BoardManager.Boards}">
-        <ListBox.ItemTemplate>
+        <ItemsControl.ItemTemplate>
             <DataTemplate DataType="interfaces:IBoard">
-                <Grid ColumnDefinitions="2*,5*,3*">
-                    <TextBlock Grid.Column="0" Text="{Binding Name, Mode=TwoWay}"/>
+                <Grid ColumnDefinitions="2*,6*,2*">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Grid.Column="0" Text="{Binding Name, Mode=TwoWay}"/>
                     <TextBox Grid.Column="1" Text="{Binding Data, Mode=TwoWay}"/>
                     <StackPanel
                         Grid.Column="2"
@@ -28,17 +35,18 @@
                             Command="{Binding 
                             #MainControl.((viewModels:HotkeyViewModel)DataContext).ClipboardHotkeyManager.SetTextFromClipBoard}"
                             CommandParameter="{Binding Name}"
-                            ToolTip.Tip="{x:Static languages:Langs.ToLocalClipboard}"/>
+                            ToolTip.Tip="{DynamicResource ToLocalClipboard}"/>
                         <Button 
                             Classes="Ico Neutral"
                             Content="{DynamicResource IcoToGlobalClipboard}"
                             Command="{Binding 
                             #MainControl.((viewModels:HotkeyViewModel)DataContext).ClipboardHotkeyManager.SetTextToClipboard}"
                             CommandParameter="{Binding Name}"
-                            ToolTip.Tip="{x:Static languages:Langs.ToGlobalClipboard}"/>
+                            ToolTip.Tip="{DynamicResource ToGlobalClipboard}"/>
                     </StackPanel>
                 </Grid>
             </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    </ScrollViewer>
 </UserControl>

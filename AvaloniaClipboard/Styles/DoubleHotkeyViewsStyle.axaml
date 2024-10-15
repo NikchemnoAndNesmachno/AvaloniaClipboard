@@ -4,10 +4,7 @@
         xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime">
     <Design.PreviewWith>
         <Border Padding="20">
-            <templatedControls:DoubleHotkeyView
-
-                BoardName="Board"
-            >
+            <templatedControls:DoubleHotkeyView BoardName="Board" Width="300" Height="50">
             <templatedControls:DoubleHotkeyView.KeysToBoard>
                 <collections:ArrayList>
                     <x:String>Item 1</x:String>
@@ -27,43 +24,44 @@
     </Design.PreviewWith>
 
     <Style Selector="templatedControls|DoubleHotkeyView">
-        <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnBackgroundDefault}"/>
         <Style Selector="^ TextBlock#BoardName">
-            <Setter Property="Foreground" Value="{DynamicResource NeutralBrush}"/>
-            <Setter Property="Margin" Value="0 0 5 0"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnTextBlockForeground}"/>
+            <Setter Property="Margin" Value="0"/>
         </Style>
         <Style Selector="^ templatedControls|HorizontalList ItemsControl">
-            <Setter Property="Background" Value="{DynamicResource ControlBackground}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnListBackground}"/>
             <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="2"/>
             <Style Selector="^ TextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource ButtonPressedForeground}"/>
+                <Setter Property="Foreground" Value="{DynamicResource OwnIcoNeutralHovered}"/>
             </Style>
-            
         </Style>
         <Style Selector="^ templatedControls|HorizontalList#FirstHotkeyList ItemsControl">
-            <Setter Property="BorderBrush" Value="{DynamicResource AcceptBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoPositive}"/>
         </Style>
         <Style Selector="^ templatedControls|HorizontalList#SecondHotkeyList ItemsControl">
-            <Setter Property="BorderBrush" Value="{DynamicResource NeutralBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoNeutral}"/>
         </Style>
     </Style>
     
-    <Style Selector="ListBox.Hotkeys ListBoxItem">
-        <Setter Property="Background" Value="{DynamicResource ButtonBackground}"/>
-        <Style Selector="^:selected /template/ ContentPresenter">
-            <Setter Property="Background" Value="OrangeRed"/>
-        </Style>
-        <Style Selector="^:selected TextBlock#BoardName">
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
-        <Style Selector="^:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="Lime"/>
-        </Style>
-        <Style Selector="^:pointerover TextBlock#BoardName">
-            <Setter Property="Foreground" Value="Black"/>
+    <Style Selector="ListBox">
+        <Setter Property="Background" Value="{DynamicResource OwnListBackground}"/>
+        <Style Selector="^ ListBoxItem">
+            <Setter Property="Background" Value="{DynamicResource OwnListItemBackground}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnListItemBackgroundHovered}"/>
+            </Style>
+            <Style Selector="^:pointerover TextBlock#BoardName">
+                <Setter Property="Foreground" Value="{DynamicResource OwnTextBlockForeground}"/>
+            </Style>
+            <Style Selector="^:selected /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnListItemBackgroundSelected}"/>
+            </Style>
+            <Style Selector="^:selected TextBlock#BoardName">
+                <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+            </Style>
         </Style>
     </Style>
 </Styles>

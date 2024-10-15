@@ -10,6 +10,10 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaXaml Remove="Resources\Languages\en.axaml" />
+        <AvaloniaResource Include="Resources\Languages\en.axaml" />
+        <AvaloniaXaml Remove="Resources\FontResources.axaml" />
+        <AvaloniaResource Include="Resources\FontResources.axaml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -51,11 +55,6 @@
         <DependentUpon>WrapList.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Styles\Resources\Languages\Langs.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Langs.resx</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -64,12 +63,31 @@
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Styles\Fonts\IcoResource.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\BorderValues.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\ColorThemes\AnotherPink.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\ColorThemes\Dark.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\ColorThemes\IncludeThemes.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\ColorThemes\Pink.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\FontResources.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\FontValues.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\IncludeResources.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\Languages\en.axaml" />
+      <UpToDateCheckInput Remove="Styles\Resources\Languages\ua.axaml" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Styles\Resources\Languages\Langs.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Langs.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+      <AdditionalFiles Include="Resources\BorderValues.axaml" />
+      <AdditionalFiles Include="Resources\ColorThemes\AnotherPink.axaml" />
+      <AdditionalFiles Include="Resources\ColorThemes\Dark.axaml" />
+      <AdditionalFiles Include="Resources\ColorThemes\Pink.axaml" />
+      <AdditionalFiles Include="Resources\FontResources.axaml" />
+      <AdditionalFiles Include="Resources\FontValues.axaml" />
+      <AdditionalFiles Include="Resources\Languages\en.axaml" />
+      <AdditionalFiles Include="Resources\Languages\ua.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AvaloniaXaml Remove="Resources\Languages\ua.axaml" />
+      <AvaloniaResource Include="Resources\Languages\ua.axaml" />
     </ItemGroup>
 </Project>

@@ -1,18 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:AvaloniaClipboard.Views"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
-    <Design.PreviewWith>
-        <templatedControls:CustomTabItem />
-    </Design.PreviewWith>
-
     <Style Selector="templatedControls|CustomTabItem">
         <!-- Set Defaults -->
         <Setter Property="Content" Value="{TemplateBinding Content}"/>
         <Setter Property="Template">
             <ControlTemplate>
             <Border
-             
                 Background="{TemplateBinding Background}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 BorderBrush="{TemplateBinding BorderBrush}">

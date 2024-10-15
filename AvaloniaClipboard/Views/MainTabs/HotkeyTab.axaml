@@ -6,23 +6,21 @@
              xmlns:userControls="clr-namespace:AvaloniaClipboard.Views.UserControls"
              xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
              xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.MainTabs.HotkeyTab"
              x:DataType="viewModels:HotkeyViewModel">
     <Design.DataContext>
         <viewModels:HotkeyViewModel/>
     </Design.DataContext>
-    
     <DockPanel>
         <userControls:ReadPanelControl
             DockPanel.Dock="Top"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Stretch"
             Margin="5"/>
         <userControls:AddHotkeyPanel
             Margin="5"
             DockPanel.Dock="Top"
-            HorizontalAlignment="Left"/>
+            HorizontalAlignment="Stretch"/>
         <StackPanel
             DockPanel.Dock="Bottom"
             Orientation="Horizontal">
@@ -30,22 +28,22 @@
                 Classes="Ico Accept"
                 Content="{StaticResource IcoDownload}"
                 Command="{Binding Save}"
-                ToolTip.Tip="{x:Static languages:Langs.SaveBoards}"/>
+                ToolTip.Tip="{DynamicResource  SaveBoards}"/>
             <Button
                 Classes="Ico Neutral"
                 Content="{StaticResource IcoUpload}"
                 Command="{Binding Read}"
-                ToolTip.Tip="{x:Static languages:Langs.ReadBoards}"/>
+                ToolTip.Tip="{DynamicResource ReadBoards}"/>
             <ToggleButton
                 Classes="Ico"
                 Classes.Play="{Binding $self.IsChecked}"
                 Classes.Pause="{Binding !$self.IsChecked}"
                 DockPanel.Dock="Bottom"
                 IsChecked="{Binding IsStarted, Mode=TwoWay}"
-                ToolTip.Tip="{x:Static languages:Langs.RunStop}"/>    
+                ToolTip.Tip="{DynamicResource RunStop}"/>    
         </StackPanel>
         <ListBox
-            Classes="Hotkeys"
+            BorderBrush="{DynamicResource OwnIcoNeutral}"
             SelectedItem="{Binding CurrentHotkey}"
             ItemsSource="{Binding Hotkeys}">
             <ListBox.DataTemplates>

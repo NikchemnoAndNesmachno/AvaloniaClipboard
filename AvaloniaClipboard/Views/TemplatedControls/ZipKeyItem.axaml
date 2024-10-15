@@ -1,54 +1,17 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:AvaloniaClipboard.Views.TemplatedControls"
-        xmlns:native="clr-namespace:SharpHook.Native;assembly=SharpHook"
-        xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
         xmlns:views="clr-namespace:AvaloniaClipboard.Views">
-    <Design.PreviewWith>
-        <StackPanel>
-           <ItemsControl>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.Items>
-                    <observables:ObservableZipItem
-                        Key="Vc2"
-                        IsActivated="False"/>
-                    <observables:ObservableZipItem
-                        Key="VcUndefined"
-                        IsActivated="False"/>
-                    <controls:ZipKeyItem
-                        IsActivated="{x:True}"
-                        KeyCode="3324"/>
-                </ItemsControl.Items>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="observables:ObservableZipItem">
-                        <controls:ZipKeyItem
-                            IsActivated="{Binding IsActivated}"
-                            KeyCode="{Binding Key}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-    </Design.PreviewWith>
-
+    <StyleInclude Source="/Styles/ZipKeyStyles.axaml"/>
     <Style Selector="controls|ZipKeyItem">
         <Setter Property="Template">
             <ControlTemplate>
                 <Border 
-                    Padding="5"
-                    Margin="1"
                     Background="{TemplateBinding IsActivated, 
-                    Converter={x:Static views:Converters.ActivatedToColor}}"
-                    BorderBrush="Black"
-                    BorderThickness="{StaticResource ThicknessBold}">
-                    <TextBlock
-                        Foreground="Black"
-                        Text="{TemplateBinding KeyCode}" />    
+                    Converter={x:Static views:Converters.ActivatedToColor}}">
+                    <TextBlock Text="{TemplateBinding KeyCode}" />    
                 </Border>
-                </ControlTemplate>
+            </ControlTemplate>
         </Setter>
     </Style>
 </Styles>

@@ -33,7 +33,9 @@ public class KeyCodeListConverter: LjsonListConvert<KeyCode>
     {
         for (int i = 0; i < values.Count; i++)
         {
-            obj[i]=(KeyCode)int.Parse(values[i]);
+            var symbol = values[i];
+            if (string.IsNullOrEmpty(symbol)) continue;
+            obj[i]=(KeyCode)int.Parse(symbol);
         }
     }
 }

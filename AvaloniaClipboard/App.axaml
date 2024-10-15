@@ -2,30 +2,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AvaloniaClipboard.App"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
-             xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes"
-             xmlns:views="clr-namespace:AvaloniaClipboard.Views"
+             xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Resources.ColorThemes"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}"
              x:DataType="viewModels:AppViewModel">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
-
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Resources/Languages/en.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Resources/FontValues.axaml"/>
+                <ResourceInclude Source="/Resources/FontResources.axaml"/>
+                <ResourceInclude Source="/Resources/BorderValues.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceInclude x:Key="{x:Static colorThemes:CustomThemes.Black}"
+                                 Source="/Resources/ColorThemes/Dark.axaml"/>
+                <ResourceInclude x:Key="{x:Static colorThemes:CustomThemes.Pink}"
+                                 Source="/Resources/ColorThemes/Pink.axaml"/>
+            </ResourceDictionary.ThemeDictionaries> 
+        </ResourceDictionary>
+    </Application.Resources>
     <Application.Styles>
         <SimpleTheme />
-        <StyleInclude Source="/Styles/Resources/IncludeResources.axaml"/>
-        <StyleInclude Source="/Styles/Resources/ColorThemes/IncludeThemes.axaml"/>
+        <StyleInclude Source="/Styles/IncludeResources.axaml"/>
+        <StyleInclude Source="Styles/IcoStyles.axaml"/>
+        <StyleInclude Source="Styles/TextStyles.axaml"/>
+        <StyleInclude Source="Styles/ToolTipStyle.axaml"/>
         <StyleInclude Source="/Views/TemplatedControls/IncludeTemplates.axaml"/>
-        <StyleInclude Source="/Styles/IncludeControlStyles.axaml"/>
-
     </Application.Styles>
     <TrayIcon.Icons>
         <TrayIcons>
             <TrayIcon
                 Icon="/Assets/avalonia-logo.ico"
-                ToolTipText="Відкрити"
+                ToolTipText="{DynamicResource TrayOpen}"
                 Clicked="TrayIcon_OnClicked">
                 <TrayIcon.Menu>
                     <NativeMenu>
-                        <NativeMenuItem Header="Вихід" Click="OnExit"/>
+                        <NativeMenuItem Header="{DynamicResource TrayExit}" Click="OnExit"/>
                     </NativeMenu>
                 </TrayIcon.Menu>
             </TrayIcon>

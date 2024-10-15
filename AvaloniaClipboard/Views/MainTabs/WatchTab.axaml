@@ -7,7 +7,6 @@
              xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
              xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
              xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-             xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.MainTabs.WatchTab"
              x:DataType="viewModels:WatchViewModel">
@@ -15,27 +14,31 @@
         <viewModels:WatchViewModel/>
     </Design.DataContext>
     <DockPanel>
-        <ListBox 
-            MinHeight="50"
-            DockPanel.Dock="Top"
-            ItemsSource="{Binding HotkeyManager.PressedKeys}">
-            <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="native:KeyCode">
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
-        <Button 
-            Classes="Ico Neutral"
-            Content="{StaticResource IcoRefresh}"
-            DockPanel.Dock="Top"
-            Command="{Binding Refresh}"
-            ToolTip.Tip="{x:Static languages:Langs.RefreshWatchList}"/>
+        <DockPanel DockPanel.Dock="Top">
+            <Button 
+                Classes="Ico Neutral"
+                Content="{StaticResource IcoRefresh}"
+                DockPanel.Dock="Left"
+                Command="{Binding Refresh}"
+                ToolTip.Tip="{DynamicResource  RefreshWatchList}"/>
+            <ItemsControl
+                VerticalAlignment="Center"
+                ItemsSource="{Binding HotkeyManager.PressedKeys}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="native:KeyCode">
+                        <TextBlock
+                            Foreground="{DynamicResource OwnIcoPositive}"
+                            Margin="3"
+                            Text="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>   
+        </DockPanel>
         <ScrollViewer>
         <ItemsControl
             ItemsSource="{Binding Zips}">

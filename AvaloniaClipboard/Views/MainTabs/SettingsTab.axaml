@@ -2,7 +2,99 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
+             xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
+             xmlns:userControls="clr-namespace:AvaloniaClipboard.Views.UserControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaClipboard.Views.MainTabs.SettingsTab">
-    Welcome to Avalonia!
+             x:Class="AvaloniaClipboard.Views.MainTabs.SettingsTab"
+             x:DataType="viewModels:SettingsViewModel">
+    <Design.DataContext>
+        <viewModels:SettingsViewModel/>
+    </Design.DataContext>
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ComboBoxStyle.axaml"/>
+        <Style Selector="Grid > TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource OwnLightForeground}"/>
+        </Style>
+    </UserControl.Styles>
+    <DockPanel>
+        <StackPanel
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
+            <Button
+                Classes="Ico Accept"
+                Content="{StaticResource IcoDownload}"
+                Command="{Binding Save}"
+                ToolTip.Tip="{DynamicResource SaveBoards}"/>
+            <Button
+                Classes="Ico Neutral"
+                Content="{StaticResource IcoUpload}"
+                Command="{Binding Read}"
+                ToolTip.Tip="{DynamicResource ReadSettings}"/>
+        </StackPanel>
+        <Grid
+            ColumnDefinitions="3*,7*"
+            RowDefinitions="Auto, Auto, Auto">
+            <TextBlock 
+                Grid.Column="0" Grid.Row="0"
+                Text="{DynamicResource LabelChangeLayout}"/>
+            <StackPanel
+                Orientation="Vertical"
+                Grid.Row="0" Grid.Column="1">
+                <DockPanel LastChildFill="False">
+                    <ComboBox 
+                        DockPanel.Dock="Left"
+                        ItemsSource="{Binding LayoutSwitcher.Layouts }"
+                        SelectedItem="{Binding LayoutSwitcher.CurrentLayout}"
+                        SelectedIndex="{Binding LayoutSwitcher.CurrentLayoutIndex, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate DataType="observables:ObservableBoardLayout">
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>    
+                    <WrapPanel
+                        DockPanel.Dock="Right"
+                        Orientation="Horizontal">
+                        <Button
+                            Classes="Ico Accept"
+                            Content="{StaticResource IcoAdd}"
+                            Command="{Binding LayoutSwitcher.Add}"
+                            ToolTip.Tip="{DynamicResource CreateNewLayout}"/>
+                        <Button
+                            Classes="Ico Remove"
+                            Content="{StaticResource IcoDelete}"
+                            Command="{Binding LayoutSwitcher.Remove}"
+                            ToolTip.Tip="{DynamicResource RemoveLayout}"/>
+                        <Button
+                            Classes="Ico Neutral"
+                            Content="{StaticResource IcoSaveFile}"
+                            Command="{Binding LayoutSwitcher.BrowseSave}"
+                            ToolTip.Tip="{DynamicResource BrowsePathToSave}"/>
+                        <Button
+                            Classes="Ico Neutral"
+                            Content="{StaticResource IcoUploadFile}"
+                            Command="{Binding LayoutSwitcher.BrowseOpen}"
+                            ToolTip.Tip="{DynamicResource BrowsePathToRead}"/>    
+                    </WrapPanel>
+                </DockPanel>
+                <DockPanel>
+                    <TextBox
+                        DockPanel.Dock="Left"
+                        Text="{Binding LayoutSwitcher.CurrentLayout.Name, Mode=TwoWay}"/>
+                    <TextBox Text="{Binding LayoutSwitcher.CurrentLayout.FilePath, Mode=TwoWay}"/>
+                </DockPanel>
+            </StackPanel>
+            
+            <TextBlock
+                Grid.Row="1" Grid.Column="0"
+                Text="{DynamicResource LabelChangeLanguage}"/>
+            <userControls:LanguageList Grid.Row="1" Grid.Column="1"/>
+            <TextBlock
+                Grid.Row="2" Grid.Column="0"
+                Text="{DynamicResource LabelChangeTheme}"/>
+            <userControls:ThemeList Grid.Row="2" Grid.Column="1"/>
+        </Grid>    
+    </DockPanel>
+    
 </UserControl>

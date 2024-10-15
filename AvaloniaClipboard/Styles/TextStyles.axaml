@@ -11,24 +11,32 @@
     
     <Style Selector="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style Selector="TextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextboxForeground}"/>
-        <Setter Property="Background" Value="{DynamicResource TextboxBackground}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource TextboxForeground}"/>
-        <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
-        <Setter Property="CaretBrush" Value="{DynamicResource TextboxForeground}"/>
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextboxSelectionBackground}"/>
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextboxSelectionForeground}"/>
-        <Style Selector="^:focus">
-            <Setter Property="Foreground" Value="{DynamicResource TextboxFocusedForeground}"/>
-            <Setter Property="CaretBrush" Value="{DynamicResource TextboxFocusedForeground}"/>
-            <Style Selector="^:focus /template/ Border">
-                <Setter Property="Background" Value="{DynamicResource TextboxFocusedBackground}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource TextboxFocusedForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource OwnTextBoxForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnTextBoxBackground}"/>
+        <Setter Property="BorderBrush" Value="{Binding $self.Foreground}"/>
+        <Setter Property="CaretBrush" Value="{Binding $self.Foreground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="SelectionBrush" Value="{DynamicResource OwnTextBoxForeground}"/>
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource OwnTextBoxBackground }"/>
+        <Style Selector="^:focus-within">
+            <Setter Property="Foreground" Value="{DynamicResource OwnTextBoxForegroundFocused}"/>
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{DynamicResource OwnTextBoxBackgroundFocused}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource OwnTextBoxForegroundFocused}"/>
+            </Style>
+        </Style>
+        <Style Selector="^:pointerover">
+            <Setter Property="Foreground" Value="{DynamicResource OwnTextBoxForegroundHovered}"/>
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{DynamicResource OwnTextBoxBackgroundHovered}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource OwnTextBoxForegroundHovered}"/>
             </Style>
         </Style>
     </Style>
-    <!-- Add Styles Here -->
 </Styles>

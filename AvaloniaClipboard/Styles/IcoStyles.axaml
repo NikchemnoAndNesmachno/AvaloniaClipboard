@@ -1,14 +1,12 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-        xmlns:languages="clr-namespace:AvaloniaClipboard.Styles.Resources.Languages">
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
     <Design.PreviewWith>
         <TabControl>
             <templatedControls:CustomTabItem
                 Classes="Ico"
                 Header="{StaticResource IcoHotkey}"
-                ToolTip.Tip="{x:Static languages:Langs.HotkeyTab}"
-                >
+                ToolTip.Tip="{DynamicResource HotkeyTab}">
             <UniformGrid>
             <Button Classes="Ico Remove" Content="{StaticResource IcoDelete}"/>
             <Button Classes="Ico Remove" Content="{StaticResource IcoSubtract}"/>
@@ -25,6 +23,7 @@
             <Button Classes="Ico Neutral" Content="{StaticResource IcoSearchFile}"/>
             <ToggleButton Classes="Ico Play"/>
             <ToggleButton Classes="Ico Pause"/>
+            <ToggleButton Content="w234"/>
         </UniformGrid>
                 </templatedControls:CustomTabItem>
         </TabControl>
@@ -33,54 +32,74 @@
     <Style Selector="Button.Ico">
         <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
-        <Setter Property="Background" Value="{DynamicResource IcoBack}"/>
-        <Setter Property="Foreground" Value="{Binding $self.BorderBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnSector1Background}"/>
+        <Setter Property="BorderBrush" Value="{Binding $self.Foreground}"/>
         <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Padding" Value="5"/>
         <Style Selector="^:pointerover /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource IcoBack}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+            <Setter Property="BorderBrush" Value="{Binding $self.Foreground}"/>
         </Style>
         <Style Selector="^:pressed /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource IcoBack}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
         </Style>
         <Style Selector="^.Accept">
-            <Setter Property="Foreground" Value="{DynamicResource IcoAccept}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnIcoPositive}"/>
             <Style Selector="^:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoAccept}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoPositiveHovered}"/>
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoAcceptPress}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoPositivePressed}"/>
             </Style>
         </Style>
         
         <Style Selector="^.Neutral">
-            <Setter Property="Foreground" Value="{DynamicResource IcoNeutral}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnIcoNeutral}"/>
             <Style Selector="^:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoNeutral}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNeutralHovered}"/>
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoNeutralPress}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNeutralPressed}"/>
             </Style>
         </Style>        
         <Style Selector="^.Remove">
-            <Setter Property="Foreground" Value="{DynamicResource IcoRemove}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnIcoNegative}"/>
             <Style Selector="^:pointerover /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoRemove}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNegativeHovered}"/>
             </Style>
             <Style Selector="^:pressed /template/ ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IcoRemovePress}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNegativePressed}"/>
             </Style>
         </Style>
         
     </Style>
     
-    <Style Selector="ToggleButton.Ico">
-        <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
-        <Style Selector="^.Play">
-            <Setter Property="Content" Value="{StaticResource IcoPlay}"/>    
+    <Style Selector="ToggleButton">
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Style Selector="^:checked /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnIcoPositiveChecked}"/>
         </Style>
-        <Style Selector="^.Pause">
-            <Setter Property="Content" Value="{StaticResource IcoPause}"/>    
+        <Style Selector="^:unchecked /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnIcoNegativeChecked}"/>
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource OwnIcoNeutralHovered}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnSector1Background}"/>
+        </Style>
+        <Style Selector="^.Ico">
+            <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
+            <Style Selector="^.Play">
+                <Setter Property="Content" Value="{StaticResource IcoPlay}"/>    
+            </Style>
+            <Style Selector="^.Pause">
+                <Setter Property="Content" Value="{StaticResource IcoPause}"/>    
+            </Style>
         </Style>
     </Style>
     

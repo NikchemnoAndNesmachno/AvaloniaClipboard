@@ -1,0 +1,36 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="ComboBox">
+        <Setter Property="Foreground" Value="{DynamicResource OwnLightForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnComboBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoPositive}"/>
+        <Style Selector="^ ComboBoxItem">
+            <Setter Property="Background" Value="{DynamicResource OwnComboItemBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnComboItemForeground}"/>
+            <Style Selector="^:selected /template/ ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource OwnComboItemForegroundSelected}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnComboItemBackgroundSelected}"/>
+            </Style>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource OwnComboItemForegroundHovered}"/>
+                <Setter Property="Background" Value="{DynamicResource OwnComboItemBackgroundHovered}"/>
+            </Style>
+        </Style>
+        <Style Selector="^ ToggleButton">
+            <Setter Property="CornerRadius" Value="0"/>
+            <Style Selector="^:checked /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnIcoPositive}"/>
+            </Style>    
+            <Style Selector="^:unchecked /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnIcoNegative}"/>
+            </Style>    
+            <Style Selector="^:checked Path">
+                <Setter Property="Fill" Value="{DynamicResource OwnDarkForeground}"/>
+            </Style>
+            <Style Selector="^:unchecked Path">
+                <Setter Property="Fill" Value="{DynamicResource OwnDarkForeground}"/>
+            </Style>
+        </Style>
+        
+    </Style>
+</Styles>

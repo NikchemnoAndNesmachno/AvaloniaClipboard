@@ -1,8 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:AvaloniaClipboard.Views"
-        xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Styles.Resources.ColorThemes"
-        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+        xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Resources.ColorThemes">
     <Design.PreviewWith>
         <ThemeVariantScope RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}">
             <TabControl Margin="20" Height="300" Width="300">
@@ -22,29 +22,26 @@
     
     <Style Selector="templatedControls|CustomTabItem">
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="Background" Value="{DynamicResource TabItemUncheckedBack}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TabItemUncheckedBorder}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnTabBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource OwnTabForeground}"/>
         <Setter Property="BorderThickness" Value="0 1 1 0 "/>
-        <Setter Property="BorderBrush" Value="{DynamicResource TabItemUncheckedBorder}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource OwnTabForeground}"/>
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource TabItemCheckedBack}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource TabItemCheckedBorder}"/>
-            <Setter Property="Foreground" Value="{DynamicResource TabItemCheckedBorder}"/>
+            <Setter Property="Background" Value="{DynamicResource OwnTabBackgroundSelected}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnTabForegroundSelected}"/>
+            <Setter Property="Foreground" Value="{DynamicResource OwnTabForegroundSelected}"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
-        
-    </Style>
+        </Style>
     
     <Style Selector="TabControl">
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="Background" Value="{DynamicResource TabControlBack}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnTabBackground}"/>
         <Style Selector="^ /template/ ContentPresenter">
             <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource TabControlBorder}"/>
-            <Setter Property="Padding" Value="5"></Setter>
-            <Setter Property="Margin" Value="3"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnTabForegroundSelected}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="3"/>
         </Style>
-      
-    </Style>
-    
-</Styles>
+      </Style>
+    </Styles>

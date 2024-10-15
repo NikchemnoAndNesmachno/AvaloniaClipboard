@@ -13,35 +13,44 @@ using AvaloniaClipboard.ViewModels.Observables;
 using ReactiveUI;
 using SharpHook.Native;
 using SharpHotHook;
+using IClipboard = Avalonia.Input.Platform.IClipboard;
 
 namespace AvaloniaClipboard.ViewModels;
 
 public class HotkeyViewModel: ViewModelBase, IDisposable
 {
+    public HotkeyViewModel(IClipboardHotkeyManager hotkeyManager, LayoutSwitcher layoutSwitcher)
+    {
+        ClipboardHotkeyManager = hotkeyManager;
+        LayoutSwitcher = layoutSwitcher;
+        this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
+        this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
+        this.WhenAnyValue(x => x.KeyReader.CurrentKey).Subscribe(x=>CurrentKey =x);
+        layoutSwitcher.WhenAnyValue(x => x.CurrentLayoutIndex).Subscribe(OnCurrentLayoutChanged);
+        layoutSwitcher.WhenAnyValue(x => x.CurrentLayout.FilePath).Subscribe(OnFilePathChanged);
+    }
     public IClipboardHotkeyManager ClipboardHotkeyManager { get; set; }
-    private bool _isKeyReading, _isStarted=false;
+    private bool _isKeyReading, _isStarted;
+    private string _filePath = "";
     private KeyCode _keyCode = KeyCode.VcUndefined;
+    private ObservableCollection<ObservableDoubleHotkey> _hotkeys = [];
+
+    public ObservableCollection<ObservableDoubleHotkey> Hotkeys
+    {
+        get => _hotkeys;
+        set => this.RaiseAndSetIfChanged(ref _hotkeys, value);
+    }
     private ObservableKeyReader KeyReader { get; } = new()
     {
         PressedKeys = new ObservableCollection<KeyCode>()
     };
     public ObservableDoubleHotkey DoubleHotkey { get; set; } = new();
     public ObservableDoubleHotkey CurrentHotkey { get; set; } = new();
-    public ObservableCollection<ObservableDoubleHotkey> Hotkeys { get; set; } = [];
     
-    public HotkeyViewModel(IClipboard clipboard, HotkeyManager hotkeyManager)
-    {
-        ClipboardHotkeyManager = new ObservableClipboardHotkeyManager(clipboard,
-            ServiceManager.Get<IBoardManager>(), hotkeyManager);
-        this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
-        this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
-        this.WhenAnyValue(x => x.KeyReader.CurrentKey).Subscribe(x=>CurrentKey =x);
-    }
-
-    public HotkeyViewModel()
-    {
-        
-    }
+    public LayoutSwitcher LayoutSwitcher { get; set; }
+    
+    
+    
 
     public KeyCode CurrentKey
     {
@@ -108,14 +117,14 @@ public class HotkeyViewModel: ViewModelBase, IDisposable
 
     public void SaveToFile()
     {
-        var converter = new HotkeyViewModelConverter();
+        var converter = new ListDoubleHotkeyConverter();
         var ljson = converter.ToLjson(Hotkeys);
-        File.WriteAllText("boogie.txt", ljson);
+        File.WriteAllText(_filePath, ljson);
     }
     public void Read()
     {
-        var ljson = File.ReadAllText("boogie.txt");
-        var converter = new HotkeyViewModelConverter();
+        var ljson = File.ReadAllText(_filePath);
+        var converter = new ListDoubleHotkeyConverter();
         var result = converter.FromLjson(ljson);
         Hotkeys.Clear();
         foreach (var hotkey in result)
@@ -135,7 +144,18 @@ public class HotkeyViewModel: ViewModelBase, IDisposable
             ClipboardHotkeyManager.HotkeyManager.Stop();
         }
     }
-
+    
+    private void OnCurrentLayoutChanged(int index)
+    {
+        Hotkeys = LayoutSwitcher.CurrentLayout.Hotkeys;
+        _filePath = LayoutSwitcher.CurrentLayout.FilePath;
+    }
+    
+    private void OnFilePathChanged(string value)
+    {
+        _filePath = LayoutSwitcher.CurrentLayout.FilePath;
+    }
+    
     public void NewKeyToBoard()
     {
         if(CurrentKey == KeyCode.VcUndefined) return;

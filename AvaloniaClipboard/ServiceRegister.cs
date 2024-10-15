@@ -23,6 +23,13 @@ public static class ServiceRegister
 
     public static void RegisterServices()
     {
+        ServiceManager.Services.AddSingleton<ILanguageChanger, LanguageChanger>();
+        ServiceManager.Services.AddSingleton<IColorChanger, ColorChanger>();
+        ServiceManager.Services.AddSingleton<LayoutSwitcher>();
+        ServiceManager.Services.AddSingleton<MainWindowViewModel>();
+        ServiceManager.Services.AddSingleton<WatchViewModel>();
+        ServiceManager.Services.AddSingleton<SettingsViewModel>();
+        ServiceManager.Services.AddSingleton<MainWindow>();
         ServiceManager.Services.AddSingleton<IClipboard, ClipboardService>();
         ServiceManager.Services.AddSingleton<IBoardManager, BoardManager<ObservableBoard>>();
         ServiceManager.Services.AddSingleton(new HotkeyManager
@@ -30,5 +37,12 @@ public static class ServiceRegister
             Hotkeys = new ObservableCollection<IHotkey>(),
             PressedKeys = new ObservableCollection<KeyCode>()
         });
+        
+
+        
+        ServiceManager.Services.AddSingleton<IClipboardHotkeyManager, ObservableClipboardHotkeyManager>();
+        ServiceManager.Services.AddSingleton<HotkeyViewModel>();
+
+        ServiceManager.Services.AddSingleton<IFileService, FileService>();
     }
 }

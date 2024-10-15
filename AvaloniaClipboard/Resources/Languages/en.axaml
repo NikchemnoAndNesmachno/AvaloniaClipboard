@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=System.Runtime">
+    <s:String x:Key="AddBoardAndHotkey">Add current board and hotkeys to the list</s:String>
+    <s:String x:Key="BoardTab">Edit values from boards by yourself</s:String>
+    <s:String x:Key="ClearForm">Clear new board and hotkey form</s:String>
+    <s:String x:Key="HotkeyTab">Assign hotkeys and boards</s:String>
+    <s:String x:Key="KeysToGlobalClipboard">Add hotkeys for command 'Copy to global clipboard'</s:String>
+    <s:String x:Key="KeysToLocalClipboard">Add hotkeys for command 'Copy to local clipboard'</s:String>
+    <s:String x:Key="LangEnglish">English</s:String>
+    <s:String x:Key="LangUkrainian">Ukrainian</s:String>
+    <s:String x:Key="ReadBoards">Read boards and hotkeys from the file</s:String>
+    <s:String x:Key="RefreshWatchList">Refresh list of hotkeys to watch</s:String>
+    <s:String x:Key="RemoveBoardAndHotkey">Remove current board from the list</s:String>
+    <s:String x:Key="RunStop">Run / Stop</s:String>
+    <s:String x:Key="SaveBoards">Save boards and hotkeys for commands to the file, apply them</s:String>
+    <s:String x:Key="SettingsTab">Edit settings</s:String>
+    <s:String x:Key="ToGlobalClipboard">Copy to global clipboard from this one</s:String>
+    <s:String x:Key="ToLocalClipboard">Copy from global clipboard to program one (to here)</s:String>
+    <s:String x:Key="WatchTab">Watch at pressed keys</s:String>
+    <s:String x:Key="ThemePink">Pink</s:String>
+    <s:String x:Key="ThemeDark">Dark</s:String>
+    <s:String x:Key="LabelChangeLayout">Change key layout</s:String>
+    <s:String x:Key="LabelChangeLanguage">Change language</s:String>
+    <s:String x:Key="LabelChangeTheme">Change theme</s:String>
+    <s:String x:Key="TrayExit">Exit</s:String>
+    <s:String x:Key="TrayOpen">Show</s:String>
+    <s:String x:Key="InputLayoutName">Input current layout name</s:String>
+    <s:String x:Key="InputLayoutPath">Input current layout path </s:String>
+    <s:String x:Key="CreateNewLayout">Create new empty layout</s:String>
+    <s:String x:Key="RemoveLayout">Remove current layout</s:String>
+    <s:String x:Key="BrowsePathToSave">Browse path to new layout</s:String>
+    <s:String x:Key="BrowsePathToRead">Import existing layout</s:String>
+    <s:String x:Key="SaveSettings">Save current settings</s:String>
+    <s:String x:Key="ReadSettings">Read settings</s:String>
+</ResourceDictionary>

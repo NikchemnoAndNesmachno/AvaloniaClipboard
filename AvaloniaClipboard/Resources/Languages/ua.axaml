@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=System.Runtime">
+    <s:String x:Key="AddBoardAndHotkey">Додати дошку і гарячі клавіші до списку</s:String>
+    <s:String x:Key="BoardTab">Змінити значення дошок самостійно</s:String>
+    <s:String x:Key="ClearForm">Очистити форму для нової дошки і гарячих клавіш</s:String>
+    <s:String x:Key="HotkeyTab">Назначити гарячі клавіші та дошки</s:String>
+    <s:String x:Key="KeysToGlobalClipboard">Додати гарячі клавіші для команди 'Копіювати до глобального буферу обміну'</s:String>
+    <s:String x:Key="KeysToLocalClipboard">Додати гарячі клавіші для команди 'Копіювати до локального буферу обміну'</s:String>
+    <s:String x:Key="LangEnglish">Англійська</s:String>
+    <s:String x:Key="LangUkrainian">Українська</s:String>
+    <s:String x:Key="ReadBoards">Прочитати дошки і гарячі клавіші з файлу</s:String>
+    <s:String x:Key="RefreshWatchList">Оновити список гарячих клавіш, які натискаються</s:String>
+    <s:String x:Key="RemoveBoardAndHotkey">Видалити поточний елемент зі списку</s:String>
+    <s:String x:Key="RunStop">Запустити / зупинити</s:String>
+    <s:String x:Key="SaveBoards">Зберегти поточні дошки і гарячі клавіші до файлу, застосувати їх</s:String>
+    <s:String x:Key="SettingsTab">Змінити налаштування</s:String>
+    <s:String x:Key="ToGlobalClipboard">Копіювати до глобального буферу обміну з цього</s:String>
+    <s:String x:Key="ToLocalClipboard">Копіювати з глобального буферу обміну з локального (сюди)</s:String>
+    <s:String x:Key="WatchTab">Дивитися за натиснутими клавішами</s:String>
+    <s:String x:Key="ThemePink">Рожева</s:String>
+    <s:String x:Key="ThemeDark">Темна</s:String>
+    <s:String x:Key="LabelChangeLayout">Змінити розкладку клавіш</s:String>
+    <s:String x:Key="LabelChangeLanguage">Змінити мову</s:String>
+    <s:String x:Key="LabelChangeTheme">Змінити тему</s:String>
+    <s:String x:Key="TrayExit">Завершити</s:String>
+    <s:String x:Key="TrayOpen">Розкрити</s:String>
+    <s:String x:Key="InputLayoutName">Ввести назву поточної розкладки</s:String>
+    <s:String x:Key="InputLayoutPath">Ввести шлях до нової розкладки</s:String>
+    <s:String x:Key="CreateNewLayout">Створити нову порожню розкладку</s:String>
+    <s:String x:Key="RemoveLayout">Видалити поточну розкладку</s:String>
+    <s:String x:Key="BrowsePathToSave">Вказати шлях до нової розкладки</s:String>
+    <s:String x:Key="BrowsePathToRead">Імпортувати існуючу розкладку</s:String>
+    <s:String x:Key="SaveSettings">Зберегти налаштування</s:String>
+    <s:String x:Key="ReadSettings">Зчитати налаштування</s:String>
+</ResourceDictionary>
