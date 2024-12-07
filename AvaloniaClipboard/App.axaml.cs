@@ -27,7 +27,6 @@ public class App : Application
         {
             desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             ServiceRegister.RegisterAll();
-            DataContext = new AppViewModel();
             desktop.MainWindow = ServiceManager.Get<MainWindow>();
         }
         base.OnFrameworkInitializationCompleted();

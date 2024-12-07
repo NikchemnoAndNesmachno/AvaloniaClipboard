@@ -7,13 +7,13 @@
                 <ScrollViewer
                     VerticalScrollBarVisibility="Disabled"
                     HorizontalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{TemplateBinding ItemSource, Mode=TwoWay}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="10"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                    <ItemsControl ItemsSource="{TemplateBinding ItemSource, Mode=TwoWay}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="10"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
                 </ScrollViewer>
             </ControlTemplate>
         </Setter>

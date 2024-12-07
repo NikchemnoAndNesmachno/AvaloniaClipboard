@@ -2,11 +2,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
     <Design.PreviewWith>
-        <TabControl>
-            <templatedControls:CustomTabItem
-                Classes="Ico"
-                Header="{StaticResource IcoHotkey}"
-                ToolTip.Tip="{DynamicResource HotkeyTab}">
             <UniformGrid>
             <Button Classes="Ico Remove" Content="{StaticResource IcoDelete}"/>
             <Button Classes="Ico Remove" Content="{StaticResource IcoSubtract}"/>
@@ -25,8 +20,7 @@
             <ToggleButton Classes="Ico Pause"/>
             <ToggleButton Content="w234"/>
         </UniformGrid>
-                </templatedControls:CustomTabItem>
-        </TabControl>
+        
     </Design.PreviewWith>
     
     <Style Selector="Button.Ico">
@@ -103,7 +97,7 @@
         </Style>
     </Style>
     
-    <Style Selector="templatedControls|CustomTabItem.Ico > Border > TextBlock">
+    <Style Selector="TabItem.Ico > Border > TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource IcoFont}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeHuge}"/>
     </Style>

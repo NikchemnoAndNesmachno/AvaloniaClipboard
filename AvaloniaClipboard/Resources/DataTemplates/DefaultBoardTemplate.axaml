@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+                    xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables">
+    <DataTemplate x:Key="DefaultHotkeyTemplate" x:DataType="observables:OBoard">
+        <Grid ColumnDefinitions="2*,4*,4*">
+            <Grid.Styles>
+                <StyleInclude Source="/Styles/DefaultHotkeyStyle.axaml"/>
+            </Grid.Styles>
+            <TextBlock
+                VerticalAlignment="Center"
+                Grid.Column="0"
+                x:Name="BoardName"
+                Text="{Binding Name, Mode=TwoWay}"/>
+            <templatedControls:HorizontalList
+                Grid.Column="1"
+                x:Name="FirstHotkeyList"
+                ItemSource="{Binding FromClipboardHotkey.KeyCodes, Mode=TwoWay}"/>
+            <templatedControls:HorizontalList
+                Grid.Column="2"
+                x:Name="SecondHotkeyList"
+                ItemSource="{Binding ToClipboardHotkey.KeyCodes, Mode=TwoWay}"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

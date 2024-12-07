@@ -1,0 +1,11 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
+                    xmlns:views="clr-namespace:AvaloniaClipboard.Views">
+    <DataTemplate x:Key="ZipItemTemplate" DataType="observables:OZipItem">
+        <Border Background="{Binding Bool, 
+        Converter={x:Static views:Converters.ActivatedToColorConverter}}">
+            <TextBlock Text="{Binding Key}"/>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

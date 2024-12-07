@@ -1,57 +1,49 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using AvaloniaClipboard.Models;
-using AvaloniaClipboard.Models.Interfaces;
-using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels.LjsonConverters;
 using AvaloniaClipboard.ViewModels.Observables;
 using ReactiveUI;
 using SharpHook.Native;
 using SharpHotHook;
-using IClipboard = Avalonia.Input.Platform.IClipboard;
+using SharpHotHook.Interfaces;
 
 namespace AvaloniaClipboard.ViewModels;
 
-public class HotkeyViewModel: ViewModelBase, IDisposable
+public class HotkeyViewModel: ReactiveObject, IDisposable
 {
-    public HotkeyViewModel(IClipboardHotkeyManager hotkeyManager, LayoutSwitcher layoutSwitcher)
+    public HotkeyManager HotkeyRunner { get; set; } = new()
     {
-        ClipboardHotkeyManager = hotkeyManager;
+        PressedKeys = new ObservableCollection<KeyCode>(),
+        Hotkeys = new ObservableCollection<IHotkey>()
+    };
+    public HotkeyViewModel(BoardManager boardManager, LayoutSwitcher layoutSwitcher)
+    {
+        BoardManager = boardManager;
         LayoutSwitcher = layoutSwitcher;
         this.WhenAnyValue(x => x.IsKeyReading).Subscribe(OnKeyReadingChanged);
         this.WhenAnyValue(x => x.IsStarted).Subscribe(OnStarted);
         this.WhenAnyValue(x => x.KeyReader.CurrentKey).Subscribe(x=>CurrentKey =x);
         layoutSwitcher.WhenAnyValue(x => x.CurrentLayoutIndex).Subscribe(OnCurrentLayoutChanged);
         layoutSwitcher.WhenAnyValue(x => x.CurrentLayout.FilePath).Subscribe(OnFilePathChanged);
+        NewHotkeyBoard = new OBoard()
+        {
+            Name = "TestHotkeyBoard"
+        };
+        this.WhenAnyValue(x => x.CurrentHotkeyBoard).Subscribe(OnCurrentBoardChanged);
     }
-    public IClipboardHotkeyManager ClipboardHotkeyManager { get; set; }
+    public BoardManager BoardManager { get; set; }
     private bool _isKeyReading, _isStarted;
     private string _filePath = "";
     private KeyCode _keyCode = KeyCode.VcUndefined;
-    private ObservableCollection<ObservableDoubleHotkey> _hotkeys = [];
+    private OKeyReader KeyReader { get; } = new();
+    public OBoard? CurrentHotkeyBoard { get; set; }
 
-    public ObservableCollection<ObservableDoubleHotkey> Hotkeys
-    {
-        get => _hotkeys;
-        set => this.RaiseAndSetIfChanged(ref _hotkeys, value);
-    }
-    private ObservableKeyReader KeyReader { get; } = new()
-    {
-        PressedKeys = new ObservableCollection<KeyCode>()
-    };
-    public ObservableDoubleHotkey DoubleHotkey { get; set; } = new();
-    public ObservableDoubleHotkey CurrentHotkey { get; set; } = new();
+    public OBoard NewHotkeyBoard { get; set; }
     
     public LayoutSwitcher LayoutSwitcher { get; set; }
     
     
-    
-
     public KeyCode CurrentKey
     {
         get => _keyCode;
@@ -74,26 +66,26 @@ public class HotkeyViewModel: ViewModelBase, IDisposable
     {
         KeyReader.Stop();
         KeyReader.Dispose();
-        ClipboardHotkeyManager.HotkeyManager.Stop();
-        ClipboardHotkeyManager.HotkeyManager.Dispose();
+        HotkeyRunner.Stop();
+        HotkeyRunner.Dispose();
     }
 
     public void AddNewHotkey()
     {
-        foreach (var hotkey in Hotkeys)
-        {
-            if(hotkey.BoardName == DoubleHotkey.BoardName) return;
-        }
-        Hotkeys.Add(DoubleHotkey.Copy());
+        BoardManager.AddHotkeyBoardCopy(NewHotkeyBoard);
     }
-    public void ClearCurrentHotkey()
+    public void ClearNewHotkey()
     {
-        DoubleHotkey.BoardName = "";
-        DoubleHotkey.KeysToBoard.Clear();
-        DoubleHotkey.KeysToClipBoard.Clear();
+        NewHotkeyBoard.Name = "";
+        NewHotkeyBoard.FromClipboardHotkey.KeyCodes.Clear();
+        NewHotkeyBoard.ToClipboardHotkey.KeyCodes.Clear();
     }
 
-    public void RemoveCurrentHotkey() => Hotkeys.Remove(CurrentHotkey);
+    public void RemoveCurrentBoard()
+    {
+        if(CurrentHotkeyBoard is null) return;
+        BoardManager.Remove(CurrentHotkeyBoard);
+    }
 
     private void OnKeyReadingChanged(bool value)
     {
@@ -102,69 +94,77 @@ public class HotkeyViewModel: ViewModelBase, IDisposable
         else
             KeyReader.Stop();
     }
-
-    public async void Save()
+    
+    private void OnCurrentBoardChanged(OBoard? value)
     {
-        ClipboardHotkeyManager.Clear();
-        foreach (var hotkey in Hotkeys)
-        {
-            ClipboardHotkeyManager.AddHotkey_SetToBoard(hotkey.KeysToBoard.ToArray(), hotkey.BoardName);
-            ClipboardHotkeyManager.AddHotkey_SetToClipBoard(hotkey.KeysToClipBoard.ToArray(), hotkey.BoardName);
-        }
+        if(value is null ) return;
+        NewHotkeyBoard.Name = value.Name;
+        NewHotkeyBoard.ToClipboardHotkey.KeyCodes 
+            = new ObservableCollection<KeyCode>(value.ToClipboardHotkey.KeyCodes);
+        NewHotkeyBoard.FromClipboardHotkey.KeyCodes 
+            = new ObservableCollection<KeyCode>(value.FromClipboardHotkey.KeyCodes);
+    }
 
-        await Task.Run(SaveToFile);
+    public void Apply()
+    {
+        HotkeyRunner.Hotkeys.Clear();
+        foreach (var board in BoardManager.Boards)
+        {
+            HotkeyRunner.Add(board.FromClipboardHotkey);
+            HotkeyRunner.Add(board.ToClipboardHotkey);
+        }
     }
 
     public void SaveToFile()
     {
-        var converter = new ListDoubleHotkeyConverter();
-        var ljson = converter.ToLjson(Hotkeys);
+        var converter = new LjsonBoardManagerConverter();
+        var ljson = converter.ToLjson(BoardManager);
         File.WriteAllText(_filePath, ljson);
     }
     public void Read()
     {
-        var ljson = File.ReadAllText(_filePath);
-        var converter = new ListDoubleHotkeyConverter();
-        var result = converter.FromLjson(ljson);
-        Hotkeys.Clear();
-        foreach (var hotkey in result)
+        try
         {
-            Hotkeys.Add(hotkey);
+            var ljson = File.ReadAllText(_filePath);
+            var converter = new LjsonBoardManagerConverter();
+            converter.FromLjson(BoardManager, ljson);
+            Apply();
         }
+        catch (Exception)
+        {
+            // ignored
+        }
+        
+        
     }
     private void OnStarted(bool value)
     {
         if (value)
         {
-            ClipboardHotkeyManager.HotkeyManager.Start();
             IsKeyReading = false;
+            HotkeyRunner.Start();
         }
         else
         {
-            ClipboardHotkeyManager.HotkeyManager.Stop();
+            HotkeyRunner.Stop();
         }
     }
     
-    private void OnCurrentLayoutChanged(int index)
-    {
-        Hotkeys = LayoutSwitcher.CurrentLayout.Hotkeys;
+    private void OnCurrentLayoutChanged(int index) => 
         _filePath = LayoutSwitcher.CurrentLayout.FilePath;
-    }
-    
-    private void OnFilePathChanged(string value)
-    {
+
+    private void OnFilePathChanged(string value) => 
         _filePath = LayoutSwitcher.CurrentLayout.FilePath;
-    }
-    
-    public void NewKeyToBoard()
+
+    public void NewKeyFromClipBoard()
     {
         if(CurrentKey == KeyCode.VcUndefined) return;
-        DoubleHotkey.KeysToBoard.Add(CurrentKey);
+        NewHotkeyBoard.FromClipboardHotkey.KeyCodes.Add(CurrentKey);
     }
 
     public void NewKeyToClipBoard()
     {
         if(CurrentKey == KeyCode.VcUndefined) return;
-        DoubleHotkey.KeysToClipBoard.Add(CurrentKey);
+        NewHotkeyBoard.ToClipboardHotkey.KeyCodes.Add(CurrentKey);
     }
 }

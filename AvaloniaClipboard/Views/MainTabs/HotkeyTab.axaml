@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              xmlns:userControls="clr-namespace:AvaloniaClipboard.Views.UserControls"
-             xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
-             xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.MainTabs.HotkeyTab"
              x:DataType="viewModels:HotkeyViewModel">
@@ -26,8 +24,13 @@
             Orientation="Horizontal">
             <Button
                 Classes="Ico Accept"
+                Content="{StaticResource IcoLike}"
+                Command="{Binding Apply}"
+                ToolTip.Tip="{DynamicResource  ApplyHotkey}"/>
+            <Button
+                Classes="Ico Accept"
                 Content="{StaticResource IcoDownload}"
-                Command="{Binding Save}"
+                Command="{Binding SaveToFile}"
                 ToolTip.Tip="{DynamicResource  SaveBoards}"/>
             <Button
                 Classes="Ico Neutral"
@@ -44,16 +47,12 @@
         </StackPanel>
         <ListBox
             BorderBrush="{DynamicResource OwnIcoNeutral}"
-            SelectedItem="{Binding CurrentHotkey}"
-            ItemsSource="{Binding Hotkeys}">
-            <ListBox.DataTemplates>
-                <DataTemplate x:DataType="observables:ObservableDoubleHotkey">
-                    <templatedControls:DoubleHotkeyView
-                        BoardName="{Binding BoardName }"
-                        KeysToBoard="{Binding KeysToBoard}"
-                        KeysToClipboard="{Binding KeysToClipBoard}"/>
-                </DataTemplate>
-            </ListBox.DataTemplates>
+            SelectedItem="{Binding CurrentHotkeyBoard}"
+            ItemsSource="{Binding BoardManager.Boards}"
+            ItemTemplate="{StaticResource DefaultHotkeyTemplate}">
+            <ListBox.Styles>
+                <StyleInclude Source="/Styles/DefaultHotkeyStyle.axaml"/>
+            </ListBox.Styles>
         </ListBox>
     </DockPanel>        
 </UserControl>

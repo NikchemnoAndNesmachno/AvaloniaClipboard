@@ -1,9 +1,5 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StyleInclude Source="DoubleHotkeyView.axaml"/>
-    <StyleInclude Source="NewDoubleHotkeyView.axaml"/>
     <StyleInclude Source="WrapList.axaml"/>
     <StyleInclude Source="HorizontalList.axaml"/>
-    <StyleInclude Source="CustomTabItem.axaml"/>
-    <StyleInclude Source="ZipKeyItem.axaml"/>
 </Styles>

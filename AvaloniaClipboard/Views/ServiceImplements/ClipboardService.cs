@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using AvaloniaClipboard.Models.Interfaces;
 using AvaloniaClipboard.Services;
 
 namespace AvaloniaClipboard.Views.ServiceImplements;

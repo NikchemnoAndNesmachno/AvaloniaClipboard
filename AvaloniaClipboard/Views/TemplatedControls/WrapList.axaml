@@ -1,32 +1,13 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="using:AvaloniaClipboard.Views"
-        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime"
-        xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime">
-    <Design.PreviewWith>
-        <StackPanel Orientation="Horizontal" Height="50" Width="1000">
-            <TextBlock Text="1241" VerticalAlignment="Center"/>
-            <templatedControls:WrapList VerticalAlignment="Center">
-            <templatedControls:WrapList.Items>
-                <collections:ArrayList>
-                    <x:String>123 as</x:String>
-                    <x:String>235</x:String>
-                    <x:String>235</x:String>
-
-                </collections:ArrayList>
-            </templatedControls:WrapList.Items>
-        </templatedControls:WrapList>
-        </StackPanel>
-    </Design.PreviewWith>
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
     <Style Selector="templatedControls|WrapList">
-        <!-- Set Defaults -->
         <Setter Property="Template">
             <ControlTemplate>
                 <ListBox
+                    x:CompileBindings="False"
                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                    x:CompileBindings="False"
                     Padding="0"
                     ItemsSource="{TemplateBinding Items}">
                     <ListBox.ItemsPanel>

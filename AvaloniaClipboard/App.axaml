@@ -1,11 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AvaloniaClipboard.App"
-             xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              xmlns:colorThemes="clr-namespace:AvaloniaClipboard.Resources.ColorThemes"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}"
-             x:DataType="viewModels:AppViewModel">
+             RequestedThemeVariant="{x:Static colorThemes:CustomThemes.Black}">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Resources>
@@ -28,11 +25,12 @@
     </Application.Resources>
     <Application.Styles>
         <SimpleTheme />
-        <StyleInclude Source="/Styles/IncludeResources.axaml"/>
+        <StyleInclude Source="Views/TemplatedControls/IncludeTemplates.axaml"/>
         <StyleInclude Source="Styles/IcoStyles.axaml"/>
-        <StyleInclude Source="Styles/TextStyles.axaml"/>
+        <StyleInclude Source="Styles/IncludeTemplates.axaml"/>
+        <StyleInclude Source="Styles/IncludeResources.axaml"/>
         <StyleInclude Source="Styles/ToolTipStyle.axaml"/>
-        <StyleInclude Source="/Views/TemplatedControls/IncludeTemplates.axaml"/>
+        <StyleInclude Source="Styles/TextStyles.axaml"/>
     </Application.Styles>
     <TrayIcon.Icons>
         <TrayIcons>

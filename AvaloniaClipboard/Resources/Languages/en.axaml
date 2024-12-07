@@ -33,4 +33,5 @@
     <s:String x:Key="BrowsePathToRead">Import existing layout</s:String>
     <s:String x:Key="SaveSettings">Save current settings</s:String>
     <s:String x:Key="ReadSettings">Read settings</s:String>
+    <s:String x:Key="ApplyHotkey">Apply current hotkeys before run</s:String>
 </ResourceDictionary>

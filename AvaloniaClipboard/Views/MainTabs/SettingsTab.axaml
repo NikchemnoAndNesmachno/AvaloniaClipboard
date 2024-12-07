@@ -48,7 +48,7 @@
                         SelectedItem="{Binding LayoutSwitcher.CurrentLayout}"
                         SelectedIndex="{Binding LayoutSwitcher.CurrentLayoutIndex, Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="observables:ObservableBoardLayout">
+                            <DataTemplate DataType="observables:OBoardLayout">
                                 <TextBlock Text="{Binding Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>

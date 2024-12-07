@@ -13,7 +13,7 @@ public class LanguageChanger: ILanguageChanger
     [
         "en", "ua"
     ];
-    private int ResourceIndex { get; set; } = 0;
+    
     private string Process(string value) => 
         $"{Context}/{value}.axaml";
 

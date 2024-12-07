@@ -4,67 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AvaloniaClipboard.ViewModels"
              xmlns:native="clr-namespace:SharpHook.Native;assembly=SharpHook"
-             xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
-             xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
-             xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaClipboard.Views.MainTabs.WatchTab"
-             x:DataType="viewModels:WatchViewModel">
+             x:DataType="viewModels:HotkeyViewModel">
     <Design.DataContext>
-        <viewModels:WatchViewModel/>
+        <viewModels:HotkeyViewModel/>
     </Design.DataContext>
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/ZipStyles.axaml"/>
+    </UserControl.Styles>
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top">
-            <Button 
-                Classes="Ico Neutral"
-                Content="{StaticResource IcoRefresh}"
-                DockPanel.Dock="Left"
-                Command="{Binding Refresh}"
-                ToolTip.Tip="{DynamicResource  RefreshWatchList}"/>
-            <ItemsControl
-                VerticalAlignment="Center"
-                ItemsSource="{Binding HotkeyManager.PressedKeys}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="native:KeyCode">
-                        <TextBlock
-                            Foreground="{DynamicResource OwnIcoPositive}"
-                            Margin="3"
-                            Text="{Binding}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>   
-        </DockPanel>
-        <ScrollViewer>
         <ItemsControl
-            ItemsSource="{Binding Zips}">
+            Name="PressedKeys"
+            MinHeight="25"
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding HotkeyRunner.PressedKeys}" 
+            ItemsPanel="{StaticResource ZipItemPanelTemplate}">
             <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <DataTemplate.DataType>
-                        <x:Type TypeName="objectModel:ObservableCollection"
-                                x:TypeArguments="observables:ObservableZipItem"/>
-                    </DataTemplate.DataType>
-                    <ItemsControl ItemsSource="{Binding}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="observables:ObservableZipItem">
-                                <templatedControls:ZipKeyItem
-                                    IsActivated="{Binding IsActivated, Mode=TwoWay}"
-                                    KeyCode="{Binding Key, Mode=TwoWay}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                <DataTemplate DataType="native:KeyCode">
+                    <TextBlock Text="{Binding .}" Margin=" 5 0 5 0"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        </ScrollViewer>
+        <ScrollViewer>
+            <ItemsControl
+                ItemsSource="{Binding BoardManager.Boards}"
+                ItemTemplate="{StaticResource ZipBoardTemplate}"/>
+        </ScrollViewer>        
     </DockPanel>
+
 </UserControl>

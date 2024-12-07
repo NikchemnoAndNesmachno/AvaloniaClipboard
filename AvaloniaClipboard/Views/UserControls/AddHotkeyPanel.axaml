@@ -10,14 +10,31 @@
     <Design.DataContext>
         <viewModels:HotkeyViewModel/>
     </Design.DataContext>
+    <UserControl.Styles>
+        <StyleInclude Source="/Styles/NewBoardHotkeyStyle.axaml"/>
+    </UserControl.Styles>
     <StackPanel Orientation="Vertical"
                 DockPanel.Dock="Top">
-        <templatedControls:NewDoubleHotkeyView
-            VerticalAlignment="Top"
-            HorizontalAlignment="Stretch"
-            BoardName="{Binding DoubleHotkey.BoardName, Mode=TwoWay}"
-            KeysToBoard="{Binding DoubleHotkey.KeysToBoard, Mode=TwoWay}"
-            KeysToClipboard="{Binding DoubleHotkey.KeysToClipBoard, Mode=TwoWay}"/>
+        <DockPanel LastChildFill="False" DataContext="{Binding NewHotkeyBoard}">
+            <TextBox
+                DockPanel.Dock="Left"
+                Name="TextBox"
+                MinWidth="50"
+                VerticalAlignment="Center"
+                Text="{Binding Name, Mode=TwoWay}"/>
+            <templatedControls:WrapList
+                DockPanel.Dock="Right"
+                Classes="ToBoard"
+                Height="{Binding #TextBox.Bounds.Height}"
+                VerticalAlignment="Center"
+                Items="{Binding ToClipboardHotkey.KeyCodes}"/>
+            <templatedControls:WrapList
+                DockPanel.Dock="Right"
+                Classes="ToClipboard"
+                Height="{Binding #TextBox.Bounds.Height}"
+                VerticalAlignment="Center"
+                Items="{Binding FromClipboardHotkey.KeyCodes}"/>
+        </DockPanel>
         <StackPanel Orientation="Horizontal">
             <Button
                 Classes="Ico Accept"
@@ -27,12 +44,12 @@
             <Button
                 Classes="Ico Remove"
                 Content="{StaticResource IcoSubtract}"
-                Command="{Binding RemoveCurrentHotkey}"
+                Command="{Binding RemoveCurrentBoard}"
                 ToolTip.Tip="{DynamicResource RemoveBoardAndHotkey}"/>
             <Button
                 Classes="Ico Neutral"
                 Content="{StaticResource IcoRefresh}"
-                Command="{Binding ClearCurrentHotkey}"
+                Command="{Binding ClearNewHotkey}"
                 ToolTip.Tip="{DynamicResource ClearForm}"/>
         </StackPanel>
     </StackPanel>

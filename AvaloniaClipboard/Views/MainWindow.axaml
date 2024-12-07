@@ -3,7 +3,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:AvaloniaClipboard.ViewModels"
-        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
         xmlns:mainTabs="clr-namespace:AvaloniaClipboard.Views.MainTabs"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaClipboard.Views.MainWindow"
@@ -17,29 +16,29 @@
         <StyleInclude Source="/Styles/TabStyles.axaml"/>
     </Window.Styles>
     <TabControl>
-        <templatedControls:CustomTabItem
+        <TabItem
             Classes="Ico"
             Header="{StaticResource IcoHotkey}"
             ToolTip.Tip="{DynamicResource HotkeyTab}">
             <mainTabs:HotkeyTab DataContext="{Binding HotkeyViewModel}"/>
-        </templatedControls:CustomTabItem>
-        <templatedControls:CustomTabItem 
-            Classes="Ico"
-            Header="{StaticResource IcoWatch}"
-            ToolTip.Tip="{DynamicResource WatchTab}">
-            <mainTabs:WatchTab DataContext="{Binding WatchViewModel}"/>
-        </templatedControls:CustomTabItem>
-        <templatedControls:CustomTabItem 
+        </TabItem>
+        <TabItem
             Classes="Ico"
             Header="{StaticResource IcoClipboard}"
             ToolTip.Tip="{DynamicResource BoardTab}">
-            <mainTabs:HandManageTab  DataContext="{Binding HotkeyViewModel}"/>
-        </templatedControls:CustomTabItem>
-        <templatedControls:CustomTabItem 
+            <mainTabs:HandManageTab DataContext="{Binding HotkeyViewModel}"/>
+        </TabItem>
+        <TabItem
             Classes="Ico"
-            Header="{DynamicResource IcoSettings}"
+            Header="{StaticResource IcoWatch}"
+            ToolTip.Tip="{DynamicResource WatchTab}">
+            <mainTabs:WatchTab DataContext="{Binding HotkeyViewModel}"/>
+        </TabItem>
+        <TabItem
+            Classes="Ico"
+            Header="{StaticResource IcoSettings}"
             ToolTip.Tip="{DynamicResource SettingsTab}">
             <mainTabs:SettingsTab DataContext="{Binding SettingsViewModel}"/>
-        </templatedControls:CustomTabItem>
+        </TabItem>
     </TabControl>
 </Window>

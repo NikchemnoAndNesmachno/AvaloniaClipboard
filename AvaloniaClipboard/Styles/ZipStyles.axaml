@@ -1,0 +1,19 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="Border">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ThicknessBold}"/>
+    </Style>
+    <Style Selector="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeBig}"/>
+        <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+    </Style>
+    <Style Selector="Grid TextBlock#BoardName">
+        <Setter Property="Foreground" Value="{DynamicResource OwnTextBlockForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource OwnTextBlockBackground}"/>
+    </Style>
+    <Style Selector="ItemsControl#PressedKeys TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource OwnIcoPositive}"/>
+    </Style>
+</Styles>

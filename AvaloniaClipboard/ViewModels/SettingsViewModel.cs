@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using AvaloniaClipboard.Services;
 using AvaloniaClipboard.ViewModels.LjsonConverters;
@@ -8,7 +7,7 @@ using ReactiveUI;
 
 namespace AvaloniaClipboard.ViewModels;
 
-public class SettingsViewModel: ViewModelBase
+public class SettingsViewModel: ReactiveObject
 {
 
     public SettingsViewModel(LayoutSwitcher layoutSwitcher)
@@ -32,20 +31,18 @@ public class SettingsViewModel: ViewModelBase
     }
     
     public LayoutSwitcher LayoutSwitcher { get; set; }
-    private int _selectedLanguageIndex = 0;
-    private int _selectedColorIndex = 0;
+    private int _selectedLanguageIndex;
+    private int _selectedColorIndex;
 
     public void Read()
     {
         try
         {
             var content = File.ReadAllText(ReadFile);
-            var convertStrategy = new SettingsConverter();
-            var l = convertStrategy.LjsonToList(content);
-            convertStrategy.AssignValues(this, l);
-            
+            var converter = new LjsonSettingsConverter();
+            converter.FromLjson(this, content);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // ignored
         }
@@ -55,13 +52,12 @@ public class SettingsViewModel: ViewModelBase
     {
         try
         {
-            var convertStrategy = new SettingsConverter();
-            var l = convertStrategy.ExtractValues(this);
-            var ljson = convertStrategy.ListToLjson(l);
+            var converter = new LjsonSettingsConverter();
+            var ljson = converter.ToLjson(this);
             File.WriteAllText(ReadFile, ljson);
             
         }
-        catch (Exception e)
+        catch (Exception)
         {
             // ignored
         }

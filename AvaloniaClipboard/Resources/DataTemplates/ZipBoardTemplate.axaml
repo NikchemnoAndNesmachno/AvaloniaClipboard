@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables"
+                    xmlns:views="clr-namespace:AvaloniaClipboard.Views">
+    <DataTemplate x:Key="ZipBoardTemplate" DataType="observables:OBoard">
+        <Grid 
+            ColumnDefinitions="2*,8*">
+            <TextBlock
+                Name="BoardName"
+                DockPanel.Dock="Left"
+                Text="{Binding Name}"/>
+            <Grid.Background>
+                <MultiBinding Converter="{x:Static views:Converters.IsAllActiveConverter}">
+                <Binding Path="#ToClipboardList.((observables:ZipItems)ItemsSource).IsActive" />
+                <Binding Path="#FromClipboardList.((observables:ZipItems)ItemsSource).IsActive" />
+            </MultiBinding>
+            </Grid.Background>
+            <WrapPanel Grid.Column="1">
+                <ItemsControl 
+                    x:Name="ToClipboardList"
+                    ItemsSource="{Binding ToClipboardHotkey,
+                                Converter={x:Static views:Converters.BoardConverter}}"
+                    ItemTemplate="{StaticResource ZipItemTemplate}"
+                    ItemsPanel="{StaticResource ZipItemPanelTemplate}">
+                </ItemsControl>
+                <ItemsControl 
+                    x:Name="FromClipboardList"
+                    ItemsSource="{Binding FromClipboardHotkey,
+                                Converter={x:Static views:Converters.BoardConverter}}"
+                    ItemTemplate="{StaticResource ZipItemTemplate}"
+                    ItemsPanel="{StaticResource ZipItemPanelTemplate}">
+                </ItemsControl>    
+            </WrapPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,27 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls"
+                    xmlns:observables="clr-namespace:AvaloniaClipboard.ViewModels.Observables">
+    <DataTemplate x:Key="NewBoardTemplate" x:DataType="observables:OBoard">
+        <DockPanel LastChildFill="False">
+            <TextBox
+                DockPanel.Dock="Left"
+                Name="TextBox"
+                MinWidth="50"
+                VerticalAlignment="Center"
+                Text="{Binding Name, Mode=TwoWay}"/>
+            <templatedControls:WrapList
+                DockPanel.Dock="Right"
+                Classes="ToBoard"
+                Height="{Binding #TextBox.Bounds.Height}"
+                VerticalAlignment="Center"
+                Items="{Binding ToClipboardHotkey.KeyCodes}"/>
+            <templatedControls:WrapList
+                DockPanel.Dock="Right"
+                Classes="ToClipboard"
+                Height="{Binding #TextBox.Bounds.Height}"
+                VerticalAlignment="Center"
+                Items="{Binding FromClipboardHotkey.KeyCodes}"/>
+        </DockPanel>
+    </DataTemplate>
+</ResourceDictionary>

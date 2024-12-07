@@ -33,4 +33,5 @@
     <s:String x:Key="BrowsePathToRead">Імпортувати існуючу розкладку</s:String>
     <s:String x:Key="SaveSettings">Зберегти налаштування</s:String>
     <s:String x:Key="ReadSettings">Зчитати налаштування</s:String>
+    <s:String x:Key="ApplyHotkey">Застосувати гарячі клавіші перед запуском</s:String>
 </ResourceDictionary>

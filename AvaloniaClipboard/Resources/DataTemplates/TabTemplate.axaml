@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTemplate x:Key="TabTemplate" TargetType="TabItem">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            BorderBrush="{TemplateBinding BorderBrush}">
+            <TextBlock
+                Margin="5"
+                VerticalAlignment="Center"
+                Text="{TemplateBinding Header}"/>
+        </Border>    
+    </ControlTemplate>
+    
+</ResourceDictionary>

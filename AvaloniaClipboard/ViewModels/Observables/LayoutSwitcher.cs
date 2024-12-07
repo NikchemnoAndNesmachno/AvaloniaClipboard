@@ -1,14 +1,15 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using AvaloniaClipboard.Services;
 using ReactiveUI;
 
 namespace AvaloniaClipboard.ViewModels.Observables;
 
-public class LayoutSwitcher: ObservableBase
+public class LayoutSwitcher: ReactiveObject
 {
-    public ObservableBoardLayout CurrentLayout => Layouts[CurrentLayoutIndex];
+    public OBoardLayout CurrentLayout => Layouts[CurrentLayoutIndex];
     
-    private int _currentLayoutIndex = 0;
+    private int _currentLayoutIndex;
     public int CurrentLayoutIndex
     {
         get => _currentLayoutIndex;
@@ -24,12 +25,12 @@ public class LayoutSwitcher: ObservableBase
         CurrentLayoutIndex = 0;
     }
 
-    private ObservableCollection<ObservableBoardLayout> _layouts =
+    private ObservableCollection<OBoardLayout> _layouts =
     [
-        ObservableBoardLayout.Default
+        OBoardLayout.Default
     ];
 
-    public ObservableCollection<ObservableBoardLayout> Layouts
+    public ObservableCollection<OBoardLayout> Layouts
     {
         get => _layouts;
         set => this.RaiseAndSetIfChanged(ref _layouts, value);
@@ -38,7 +39,7 @@ public class LayoutSwitcher: ObservableBase
 
     public void Add()
     {
-        Layouts.Add(ObservableBoardLayout.Default);
+        Layouts.Add(OBoardLayout.Default);
         CurrentLayoutIndex = Layouts.Count-1;
     }
 
@@ -48,20 +49,14 @@ public class LayoutSwitcher: ObservableBase
         Layouts.Remove(CurrentLayout);
     }
 
-    public async void BrowseSave()
+    public async Task BrowseSave()
     {
         var fileService = ServiceManager.Get<IFileService>();
         CurrentLayout.FilePath = await fileService.BrowseSaveFile();
     }
-    public async void BrowseOpen()
+    public async Task BrowseOpen()
     {
         var fileService = ServiceManager.Get<IFileService>();
         CurrentLayout.FilePath = await fileService.BrowseOpenFile();
-    }
-
-    public void Read(LayoutSwitcher switcher)
-    {
-        Layouts = switcher.Layouts;
-        CurrentLayoutIndex = switcher.CurrentLayoutIndex;
     }
 }

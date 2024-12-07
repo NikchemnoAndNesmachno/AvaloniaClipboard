@@ -1,0 +1,45 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:templatedControls="clr-namespace:AvaloniaClipboard.Views.TemplatedControls">
+    <Style Selector="Grid">
+        <Setter Property="Background" Value="{DynamicResource OwnBackgroundDefault}"/>
+        <Style Selector="^ TextBlock#BoardName">
+            <Setter Property="Foreground" Value="{DynamicResource OwnTextBlockForeground}"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+        <Style Selector="^ templatedControls|HorizontalList ItemsControl">
+            <Setter Property="Background" Value="{DynamicResource OwnListBackground}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource ThicknessThin}"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
+            <Style Selector="^ TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource OwnLightForeground}"/>
+            </Style>
+        </Style>
+        <Style Selector="^ templatedControls|HorizontalList#FirstHotkeyList ItemsControl">
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoPositive}"/>
+        </Style>
+        <Style Selector="^ templatedControls|HorizontalList#SecondHotkeyList ItemsControl">
+            <Setter Property="BorderBrush" Value="{DynamicResource OwnIcoNeutral}"/>
+        </Style>
+    </Style>
+    
+    <Style Selector="ListBox">
+        <Setter Property="Background" Value="{DynamicResource OwnListBackground}"/>
+        <Style Selector="^ ListBoxItem">
+            <Setter Property="Background" Value="{DynamicResource OwnListItemBackground}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnListItemBackgroundHovered}"/>
+            </Style>
+            <Style Selector="^:pointerover TextBlock#BoardName">
+                <Setter Property="Foreground" Value="{DynamicResource OwnTextBlockForeground}"/>
+            </Style>
+            <Style Selector="^:selected /template/ ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource OwnListItemBackgroundSelected}"/>
+            </Style>
+            <Style Selector="^:selected TextBlock#BoardName">
+                <Setter Property="Foreground" Value="{DynamicResource OwnDarkForeground}"/>
+            </Style>
+        </Style>
+    </Style>
+</Styles>

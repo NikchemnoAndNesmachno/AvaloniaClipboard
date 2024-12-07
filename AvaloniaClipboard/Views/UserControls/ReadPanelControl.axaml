@@ -9,9 +9,6 @@
     <Design.DataContext>
         <viewModels:HotkeyViewModel/>
     </Design.DataContext>
-    <UserControl.Styles>
-        <StyleInclude Source="/Styles/IcoStyles.axaml"/>
-    </UserControl.Styles>
     <DockPanel LastChildFill="False">
         <WrapPanel
             DockPanel.Dock="Right"
@@ -20,7 +17,7 @@
                 Classes="Ico Accept"
                 DockPanel.Dock="Right"
                 Content="{StaticResource IcoToLocalClipboard}"
-                Command="{Binding NewKeyToBoard}"
+                Command="{Binding NewKeyFromClipBoard}"
                 ToolTip.Tip="{DynamicResource KeysToLocalClipboard}"/>
             <Button
                 Classes="Ico Neutral"

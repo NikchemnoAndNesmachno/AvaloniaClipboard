@@ -31,6 +31,5 @@
                 <Setter Property="Fill" Value="{DynamicResource OwnDarkForeground}"/>
             </Style>
         </Style>
-        
     </Style>
 </Styles>
