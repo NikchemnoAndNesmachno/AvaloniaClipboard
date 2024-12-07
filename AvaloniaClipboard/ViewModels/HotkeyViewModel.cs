@@ -10,7 +10,7 @@ using SharpHotHook.Interfaces;
 
 namespace AvaloniaClipboard.ViewModels;
 
-public class HotkeyViewModel: ReactiveObject, IDisposable
+public class HotkeyViewModel: ReactiveObject
 {
     public HotkeyManager HotkeyRunner { get; set; } = new()
     {
@@ -36,7 +36,7 @@ public class HotkeyViewModel: ReactiveObject, IDisposable
     private bool _isKeyReading, _isStarted;
     private string _filePath = "";
     private KeyCode _keyCode = KeyCode.VcUndefined;
-    private OKeyReader KeyReader { get; } = new();
+    public OKeyReader KeyReader { get; } = new();
     public OBoard? CurrentHotkeyBoard { get; set; }
 
     public OBoard NewHotkeyBoard { get; set; }
@@ -62,13 +62,6 @@ public class HotkeyViewModel: ReactiveObject, IDisposable
         set => this.RaiseAndSetIfChanged(ref _isStarted, value);
     }
     
-    public void Dispose()
-    {
-        KeyReader.Stop();
-        KeyReader.Dispose();
-        HotkeyRunner.Stop();
-        HotkeyRunner.Dispose();
-    }
 
     public void AddNewHotkey()
     {

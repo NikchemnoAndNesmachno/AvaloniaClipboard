@@ -30,7 +30,6 @@ public class App : Application
             desktop.MainWindow = ServiceManager.Get<MainWindow>();
         }
         base.OnFrameworkInitializationCompleted();
-
     }
     
     private void TrayIcon_OnClicked(object? sender, EventArgs e)
@@ -57,8 +56,9 @@ public class App : Application
     private void OnExit(object? sender, EventArgs e)
     {
         if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop) return;
-        var manager = ServiceManager.Get<HotHook.HotkeyManager>();
-        manager.Stop();
+        var manager = ServiceManager.Get<HotkeyViewModel>();
+        manager.HotkeyRunner.Stop();
+        manager.KeyReader.Stop();
         desktop.Shutdown();
     }
 }
